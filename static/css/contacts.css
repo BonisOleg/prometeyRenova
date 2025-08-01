@@ -1,0 +1,100 @@
+/* CONTACTS.CSS - Стилі для контактів згідно STYLE.MDC */
+
+.contacts-section {
+    padding: var(--space-xl) 0;
+    background: var(--color-beige);
+    position: relative;
+}
+
+.contacts-section h1 {
+    margin-bottom: var(--space-xl);
+}
+
+.contacts-section h2 {
+    margin-bottom: var(--space-lg);
+}
+
+/* Декоративні елементи */
+.contacts-section::before {
+    content: '✉';
+    position: absolute;
+    top: var(--space-sm);
+    left: var(--space-sm);
+    color: var(--color-red);
+    font-size: 28px;
+    opacity: 0.6;
+}
+
+.contacts-section::after {
+    content: '⟶';
+    position: absolute;
+    bottom: var(--space-sm);
+    right: var(--space-sm);
+    color: var(--color-red);
+    font-size: 32px;
+    font-weight: 700;
+    opacity: 0.4;
+}
+
+.contact-info {
+    margin-bottom: var(--space-lg);
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: var(--space-sm);
+    padding-left: var(--space-xs);
+    border-left: 2px solid var(--color-red);
+}
+
+.contact-item a {
+    color: var(--color-black);
+    text-decoration: none;
+    transition: color 0.3s ease-out;
+}
+
+.contact-item a:hover {
+    color: var(--color-red);
+}
+
+.contact-form {
+    background: var(--color-white);
+    padding: var(--space-md);
+    border: 2px solid var(--color-red);
+    position: relative;
+}
+
+.contact-form::before {
+    content: '△';
+    position: absolute;
+    top: -10px;
+    left: var(--space-sm);
+    color: var(--color-red);
+    font-size: 16px;
+    background: var(--color-white);
+    padding: 0 5px;
+}
+
+/* ===== АДАПТАЦІЯ МОБІЛЬНІ ===== */
+@media (max-width: 767px) {
+    .contacts-section {
+        padding: var(--space-md) 0;
+    }
+
+    .contacts-section::before {
+        font-size: 20px;
+        top: var(--space-xs);
+        left: var(--space-xs);
+    }
+
+    .contacts-section::after {
+        font-size: 24px;
+        bottom: var(--space-xs);
+        right: var(--space-xs);
+    }
+
+    .contact-form {
+        padding: var(--space-sm);
+    }
+}

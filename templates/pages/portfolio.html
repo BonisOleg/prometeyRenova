@@ -1,0 +1,298 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ page_title }}{% endblock %}
+{% block description %}{{ meta_description }}{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/portfolio.css' %}">
+{% endblock %}
+
+{% block content %}
+<!-- Portfolio Hero з фоновим відео -->
+<section class="portfolio-hero full-height">
+    <!-- Фонові відео для декстопу та мобільних -->
+    <video class="video-background desktop-video" autoplay muted loop playsinline>
+        <source src="{% static 'videos/desktop/portfolio-bg.mp4' %}" type="video/mp4">
+    </video>
+    <video class="video-background mobile-video" autoplay muted loop playsinline>
+        <source src="{% static 'videos/mobile/portfolio-bg-mobile.mp4' %}" type="video/mp4">
+    </video>
+
+    <!-- Overlay для кращої читабельності -->
+    <div class="video-overlay"></div>
+
+    <div class="hero-content">
+        <div class="container">
+            <div class="hero-text text-center">
+                <h1 class="text-mega color-red mb-lg">
+                    Створені нами <span class="seo-highlight">сайти під ключ</span>
+                </h1>
+                <p class="text-large color-white">
+                    Приклади наших робіт - сучасні веб-рішення для різних сфер бізнесу
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Portfolio Projects - Card Stack Effect -->
+<section class="portfolio-projects">
+    <!-- PROJECT 01 -->
+    <div class="project-card" data-project="1">
+        <!-- Фонове відео для проекту -->
+        <video class="project-video desktop-video" autoplay muted loop playsinline>
+            <source src="{% static 'videos/desktop/project-1.mp4' %}" type="video/mp4">
+        </video>
+        <video class="project-video mobile-video" autoplay muted loop playsinline>
+            <source src="{% static 'videos/mobile/project-1-mobile.mp4' %}" type="video/mp4">
+        </video>
+        <div class="project-overlay"></div>
+
+        <div class="container">
+            <div class="grid-60-40">
+                <div class="project-content">
+                    <span class="project-number text-page color-red">01</span>
+                    <h2 class="text-large color-white mb-sm">E-commerce платформа</h2>
+                    <p class="text-base color-white mb-sm">
+                        Повнофункціональний <strong>інтернет-магазин</strong> з адаптивним дизайном,
+                        інтеграцією платіжних систем, CRM та системою управління товарами.
+                        Збільшив продажі клієнта на 150% за перші 3 місяці.
+                    </p>
+                    <ul class="project-features color-white text-base mb-md">
+                        <li>React + Redux для фронтенда</li>
+                        <li>Django REST API для бекенда</li>
+                        <li>Stripe + LiqPay інтеграція</li>
+                        <li>Адмін панель для управління</li>
+                        <li>SEO оптимізація</li>
+                    </ul>
+                    <button class="btn btn-primary" data-modal="site-request-modal">
+                        Замовити подібний
+                    </button>
+                </div>
+                <div class="project-preview">
+                    <div class="preview-screen">
+                        <div class="screen-placeholder">
+                            <span class="preview-text">E-commerce Demo</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PROJECT 02 -->
+    <div class="project-card" data-project="2">
+        <video class="project-video desktop-video" autoplay muted loop playsinline>
+            <source src="{% static 'videos/desktop/project-2.mp4' %}" type="video/mp4">
+        </video>
+        <video class="project-video mobile-video" autoplay muted loop playsinline>
+            <source src="{% static 'videos/mobile/project-2-mobile.mp4' %}" type="video/mp4">
+        </video>
+        <div class="project-overlay"></div>
+
+        <div class="container">
+            <div class="grid-60-40">
+                <div class="project-content">
+                    <span class="project-number text-page color-red">02</span>
+                    <h2 class="text-large color-white mb-sm">Корпоративний сайт</h2>
+                    <p class="text-base color-white mb-sm">
+                        Представницький <strong>сайт під ключ</strong> виробничої компанії з каталогом продукції,
+                        формами зворотного зв'язку та багатомовною підтримкою.
+                        Підвищив конверсію заявок на 80%.
+                    </p>
+                    <ul class="project-features color-white text-base mb-md">
+                        <li>WordPress на основі custom теми</li>
+                        <li>WPML для мультимовності</li>
+                        <li>ACF для гнучкого контенту</li>
+                        <li>SEO оптимізація під Google</li>
+                        <li>Інтеграція з CRM системою</li>
+                    </ul>
+                    <button class="btn btn-primary" data-modal="site-request-modal">
+                        Замовити подібний
+                    </button>
+                </div>
+                <div class="project-preview">
+                    <div class="preview-screen">
+                        <div class="screen-placeholder">
+                            <span class="preview-text">Corporate Demo</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PROJECT 03 -->
+    <div class="project-card" data-project="3">
+        <video class="project-video desktop-video" autoplay muted loop playsinline>
+            <source src="{% static 'videos/desktop/project-3.mp4' %}" type="video/mp4">
+        </video>
+        <video class="project-video mobile-video" autoplay muted loop playsinline>
+            <source src="{% static 'videos/mobile/project-3-mobile.mp4' %}" type="video/mp4">
+        </video>
+        <div class="project-overlay"></div>
+
+        <div class="container">
+            <div class="grid-60-40">
+                <div class="project-content">
+                    <span class="project-number text-page color-red">03</span>
+                    <h2 class="text-large color-white mb-sm">Telegram бот для ресторану</h2>
+                    <p class="text-base color-white mb-sm">
+                        Автоматизований <strong>Telegram бот</strong> для прийому замовлень з інтеграцією з POS
+                        системою,
+                        оплатою онлайн та сповіщеннями для персоналу.
+                        Автоматизував 90% замовлень ресторану.
+                    </p>
+                    <ul class="project-features color-white text-base mb-md">
+                        <li>Python + aiogram framework</li>
+                        <li>PostgreSQL база даних</li>
+                        <li>Інтеграція з Monobank API</li>
+                        <li>Адмін панель для управління</li>
+                        <li>Push сповіщення персоналу</li>
+                    </ul>
+                    <button class="btn btn-primary" data-modal="site-request-modal">
+                        Замовити подібний
+                    </button>
+                </div>
+                <div class="project-preview">
+                    <div class="preview-screen">
+                        <div class="screen-placeholder">
+                            <span class="preview-text">Telegram Bot Demo</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PROJECT 04 -->
+    <div class="project-card" data-project="4">
+        <video class="project-video desktop-video" autoplay muted loop playsinline>
+            <source src="{% static 'videos/desktop/project-4.mp4' %}" type="video/mp4">
+        </video>
+        <video class="project-video mobile-video" autoplay muted loop playsinline>
+            <source src="{% static 'videos/mobile/project-4-mobile.mp4' %}" type="video/mp4">
+        </video>
+        <div class="project-overlay"></div>
+
+        <div class="container">
+            <div class="grid-60-40">
+                <div class="project-content">
+                    <span class="project-number text-page color-red">04</span>
+                    <h2 class="text-large color-white mb-sm">Веб-додаток для логістики</h2>
+                    <p class="text-base color-white mb-sm">
+                        SaaS платформа для управління доставками з трекінгом,
+                        аналітикою та інтеграцією з популярними службами доставки.
+                        Оптимізував логістику на 40%.
+                    </p>
+                    <ul class="project-features color-white text-base mb-md">
+                        <li>Vue.js + Nuxt.js фронтенд</li>
+                        <li>FastAPI + Python бекенд</li>
+                        <li>PostgreSQL + Redis</li>
+                        <li>Docker контейнеризація</li>
+                        <li>API інтеграції з Новою Поштою</li>
+                    </ul>
+                    <button class="btn btn-primary" data-modal="site-request-modal">
+                        Замовити подібний
+                    </button>
+                </div>
+                <div class="project-preview">
+                    <div class="preview-screen">
+                        <div class="screen-placeholder">
+                            <span class="preview-text">Logistics Demo</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PROJECT 05 -->
+    <div class="project-card" data-project="5">
+        <video class="project-video desktop-video" autoplay muted loop playsinline>
+            <source src="{% static 'videos/desktop/project-5.mp4' %}" type="video/mp4">
+        </video>
+        <video class="project-video mobile-video" autoplay muted loop playsinline>
+            <source src="{% static 'videos/mobile/project-5-mobile.mp4' %}" type="video/mp4">
+        </video>
+        <div class="project-overlay"></div>
+
+        <div class="container">
+            <div class="grid-60-40">
+                <div class="project-content">
+                    <span class="project-number text-page color-red">05</span>
+                    <h2 class="text-large color-white mb-sm">Освітня платформа</h2>
+                    <p class="text-base color-white mb-sm">
+                        Онлайн школа з відеоуроками, тестуванням, сертифікацією
+                        та системою оплати за курси. Понад 1000 активних студентів.
+                    </p>
+                    <ul class="project-features color-white text-base mb-md">
+                        <li>Django + Django REST Framework</li>
+                        <li>React для інтерактивного UI</li>
+                        <li>Vimeo API для відео</li>
+                        <li>Stripe для оплати курсів</li>
+                        <li>Система сертифікації</li>
+                    </ul>
+                    <button class="btn btn-primary" data-modal="site-request-modal">
+                        Замовити подібний
+                    </button>
+                </div>
+                <div class="project-preview">
+                    <div class="preview-screen">
+                        <div class="screen-placeholder">
+                            <span class="preview-text">Education Demo</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PROJECT 06 -->
+    <div class="project-card" data-project="6">
+        <video class="project-video desktop-video" autoplay muted loop playsinline>
+            <source src="{% static 'videos/desktop/project-6.mp4' %}" type="video/mp4">
+        </video>
+        <video class="project-video mobile-video" autoplay muted loop playsinline>
+            <source src="{% static 'videos/mobile/project-6-mobile.mp4' %}" type="video/mp4">
+        </video>
+        <div class="project-overlay"></div>
+
+        <div class="container">
+            <div class="grid-60-40">
+                <div class="project-content">
+                    <span class="project-number text-page color-red">06</span>
+                    <h2 class="text-large color-white mb-sm">Мобільний додаток фінтех</h2>
+                    <p class="text-base color-white mb-sm">
+                        React Native додаток для управління особистими фінансами
+                        з аналітикою витрат та інтеграцією з банківськими API.
+                        Більше 10,000 завантажень за перший місяць.
+                    </p>
+                    <ul class="project-features color-white text-base mb-md">
+                        <li>React Native + Expo</li>
+                        <li>Node.js + Express бекенд</li>
+                        <li>MongoDB база даних</li>
+                        <li>Банківські API інтеграції</li>
+                        <li>Біометрична аутентифікація</li>
+                    </ul>
+                    <button class="btn btn-primary" data-modal="site-request-modal">
+                        Замовити подібний
+                    </button>
+                </div>
+                <div class="project-preview">
+                    <div class="preview-screen">
+                        <div class="screen-placeholder">
+                            <span class="preview-text">Fintech Demo</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/portfolio.js' %}"></script>
+{% endblock %}

@@ -1,0 +1,141 @@
+<!-- Модальні вікна згідно STYLE.MDC -->
+
+<!-- Модалка "Стати розробником" -->
+<div class="modal" id="developer-modal" role="dialog" aria-labelledby="developer-modal-title" aria-hidden="true">
+    <div class="modal-backdrop"></div>
+    <div class="modal-content">
+        <button class="modal-close" type="button" aria-label="Закрити модальне вікно">&times;</button>
+
+        <div class="modal-header">
+            <h3 class="text-medium color-red mb-sm" id="developer-modal-title">
+                Хочу стати розробником
+            </h3>
+            <p class="text-base mb-md">
+                Залишіть контакти і ми зв'яжемося з вами для консультації про курси програмування
+            </p>
+        </div>
+
+        <form class="modal-form" id="developer-form" method="post">
+            {% csrf_token %}
+            <input type="hidden" name="form_type" value="developer">
+
+            <div class="form-group">
+                <label for="dev-name" class="form-label">Ім'я</label>
+                <input type="text" id="dev-name" name="name" class="form-input" required
+                    placeholder="Введіть ваше ім'я">
+            </div>
+
+            <div class="form-group">
+                <label for="dev-phone" class="form-label">Номер телефону</label>
+                <input type="tel" id="dev-phone" name="phone" class="form-input" required
+                    placeholder="+380XX XXX XX XX">
+            </div>
+
+            <button type="submit" class="btn btn-primary form-submit">
+                Записатися на курс
+            </button>
+        </form>
+    </div>
+</div>
+
+<!-- Модалка "Заявка на сайт" -->
+<div class="modal" id="site-request-modal" role="dialog" aria-labelledby="site-modal-title" aria-hidden="true">
+    <div class="modal-backdrop"></div>
+    <div class="modal-content">
+        <button class="modal-close" type="button" aria-label="Закрити модальне вікно">&times;</button>
+
+        <div class="modal-header">
+            <h3 class="text-medium color-red mb-sm" id="site-modal-title">
+                Заявка на створення сайту
+            </h3>
+            <p class="text-base mb-md">
+                Залишіть контакти і ми розрахуємо вартість вашого проєкту
+            </p>
+        </div>
+
+        <form class="modal-form" id="site-request-form" method="post">
+            {% csrf_token %}
+            <input type="hidden" name="form_type" value="site_request">
+
+            <div class="form-group">
+                <label for="site-name" class="form-label">Ім'я</label>
+                <input type="text" id="site-name" name="name" class="form-input" required
+                    placeholder="Введіть ваше ім'я">
+            </div>
+
+            <div class="form-group">
+                <label for="site-phone" class="form-label">Номер телефону</label>
+                <input type="tel" id="site-phone" name="phone" class="form-input" required
+                    placeholder="+380XX XXX XX XX">
+            </div>
+
+            <button type="submit" class="btn btn-primary form-submit">
+                Розрахувати вартість
+            </button>
+        </form>
+    </div>
+</div>
+
+<!-- Модалка "Результат тесту" -->
+<div class="modal" id="test-result-modal" role="dialog" aria-labelledby="result-modal-title" aria-hidden="true">
+    <div class="modal-backdrop"></div>
+    <div class="modal-content">
+        <button class="modal-close" type="button" aria-label="Закрити модальне вікно">&times;</button>
+
+        <div class="modal-header">
+            <h3 class="text-medium color-red mb-sm" id="result-modal-title">
+                Результат розрахунку
+            </h3>
+        </div>
+
+        <div class="result-content">
+            <div class="result-summary mb-md">
+                <div class="result-item">
+                    <span class="result-label text-base">Тип проєкту:</span>
+                    <span class="result-value text-base" id="result-project-type"></span>
+                </div>
+                <div class="result-item">
+                    <span class="result-label text-base">Орієнтовна вартість:</span>
+                    <span class="result-price text-large color-red" id="result-price"></span>
+                </div>
+                <div class="result-item">
+                    <span class="result-label text-base">Терміни виконання:</span>
+                    <span class="result-value text-base" id="result-timeline"></span>
+                </div>
+            </div>
+
+            <div class="result-actions text-center">
+                <a href="https://t.me/prometeylabs" class="btn btn-primary" target="_blank">
+                    Обговорити деталі в Telegram
+                </a>
+                <button type="button" class="btn btn-secondary" onclick="closeModal('test-result-modal')">
+                    Закрити
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Модалка "Дякуємо" -->
+<div class="modal" id="thank-you-modal" role="dialog" aria-labelledby="thanks-modal-title" aria-hidden="true">
+    <div class="modal-backdrop"></div>
+    <div class="modal-content">
+        <button class="modal-close" type="button" aria-label="Закрити модальне вікно">&times;</button>
+
+        <div class="modal-header text-center">
+            <div class="success-icon mb-sm">✓</div>
+            <h3 class="text-medium color-red mb-sm" id="thanks-modal-title">
+                Дякуємо за заявку!
+            </h3>
+            <p class="text-base mb-md">
+                Наш менеджер зв'яжеться з вами найближчим часом
+            </p>
+        </div>
+
+        <div class="thank-you-actions text-center">
+            <a href="https://t.me/prometeylabs" class="btn btn-primary" target="_blank">
+                Написати в Telegram зараз
+            </a>
+        </div>
+    </div>
+</div>

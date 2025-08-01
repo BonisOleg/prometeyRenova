@@ -1,0 +1,109 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ page_title }}{% endblock %}
+{% block description %}{{ meta_description }}{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/developer.css' %}">
+{% endblock %}
+
+{% block content %}
+<!-- Dark Split Section 50/50 згідно STYLE.MDC -->
+<section class="dark-split-section full-height">
+    <div class="split-container">
+        <!-- Ліва частина - чорна секція з контентом -->
+        <div class="split-left bg-black">
+            <div class="dark-content">
+                <span class="page-number text-page color-red">03</span>
+                <h1 class="text-mega color-white mb-lg">PROJECT 01</h1>
+                <h2 class="text-large color-red mb-md">СТАТИ РОЗРОБНИКОМ</h2>
+
+                <p class="text-base color-white mb-md">
+                    Мрієте стати веб-розробником? Наші курси програмування - це ваш шлях
+                    до успішної кар'єри в IT.
+                </p>
+
+                <div class="features-list mb-xl">
+                    <div class="feature-item mb-sm">
+                        <h3 class="text-medium color-red mb-xs">Практичний підхід</h3>
+                        <p class="text-base color-white">Працюємо над реальними проектами</p>
+                    </div>
+
+                    <div class="feature-item mb-sm">
+                        <h3 class="text-medium color-red mb-xs">Сучасні технології</h3>
+                        <p class="text-base color-white">HTML5, CSS3, JavaScript, React, Python, Django</p>
+                    </div>
+
+                    <div class="feature-item mb-sm">
+                        <h3 class="text-medium color-red mb-xs">Індивідуальний підхід</h3>
+                        <p class="text-base color-white">Заняття 1-на-1 або в малих групах до 5 осіб</p>
+                    </div>
+                </div>
+
+                <button class="btn btn-primary" data-modal="developer-modal">
+                    Почати навчання
+                </button>
+            </div>
+        </div>
+
+        <!-- Права частина - фото/зображення -->
+        <div class="split-right">
+            <div class="hero-image">
+                <div class="image-placeholder">
+                    <!-- Тут буде фото розробника або код-скрін -->
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Курси секція на світлому фоні -->
+<section class="courses-section bg-beige">
+    <div class="container">
+        <div class="section-header text-center mb-xl">
+            <h2 class="text-large color-red">BY THE NUMBERS</h2>
+            <p class="text-medium">Наші досягнення у навчанні</p>
+        </div>
+
+        <div class="stats-grid mb-xl">
+            <div class="stat-item text-center">
+                <span class="stat-number text-mega color-red">50+</span>
+                <p class="text-base">Випускників працевлаштовано</p>
+            </div>
+
+            <div class="stat-item text-center">
+                <span class="stat-number text-mega color-red">6</span>
+                <p class="text-base">Місяців середня тривалість навчання</p>
+            </div>
+
+            <div class="stat-item text-center">
+                <span class="stat-number text-mega color-red">1200$</span>
+                <p class="text-base">Середня зарплата після курсів</p>
+            </div>
+        </div>
+
+        <div class="courses-grid">
+            <div class="course-card bg-white p-sm">
+                <span class="course-number text-page color-red">01</span>
+                <h3 class="text-medium mb-sm">Індивідуальні заняття</h3>
+                <p class="text-base mb-sm">Персональний ментор, гнучкий графік</p>
+                <div class="course-price text-large color-red mb-sm">800 грн/год</div>
+                <button class="btn btn-secondary" data-modal="developer-modal">Записатися</button>
+            </div>
+
+            <div class="course-card bg-white p-sm">
+                <span class="course-number text-page color-red">02</span>
+                <h3 class="text-medium mb-sm">Групові курси</h3>
+                <p class="text-base mb-sm">Навчання в команді, обмін досвідом</p>
+                <div class="course-price text-large color-red mb-sm">15000 грн/курс</div>
+                <button class="btn btn-secondary" data-modal="developer-modal">Записатися</button>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/developer.js' %}"></script>
+{% endblock %}

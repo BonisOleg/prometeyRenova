@@ -1,0 +1,62 @@
+<!-- Footer - SEO оптимізований згідно STYLE.MDC -->
+<footer class="main-footer" role="contentinfo">
+    <div class="container">
+        <div class="footer-content">
+            <!-- Послуги -->
+            <div class="footer-section">
+                <h3>Наші послуги</h3>
+                <a href="{% url 'portfolio' %}" class="footer-link">Розробка сайтів під ключ</a>
+                <a href="{% url 'calculator' %}" class="footer-link">Створення Telegram ботів</a>
+                <a href="{% url 'calculator' %}" class="footer-link">Налаштування реклами Google Ads</a>
+                <a href="{% url 'calculator' %}" class="footer-link">Ведення соціальних мереж</a>
+                <a href="{% url 'developer' %}" class="footer-link">Навчання веб-розробки</a>
+                <a href="{% url 'calculator' %}" class="footer-link">Інтернет-магазини</a>
+                <a href="{% url 'calculator' %}" class="footer-link">Мобільні додатки</a>
+            </div>
+
+            <!-- Технології -->
+            <div class="footer-section">
+                <h3>Технології</h3>
+                <a href="{% url 'blog' %}" class="footer-link">HTML5 / CSS3 / JavaScript</a>
+                <a href="{% url 'blog' %}" class="footer-link">React / Vue.js / Angular</a>
+                <a href="{% url 'blog' %}" class="footer-link">Python / Django / FastAPI</a>
+                <a href="{% url 'blog' %}" class="footer-link">Node.js / Express</a>
+                <a href="{% url 'blog' %}" class="footer-link">WordPress / Tilda</a>
+                <a href="{% url 'blog' %}" class="footer-link">PostgreSQL / MySQL</a>
+                <a href="{% url 'blog' %}" class="footer-link">AWS / Digital Ocean</a>
+            </div>
+
+            <!-- Контакти -->
+            <div class="footer-section">
+                <h3>Контакти</h3>
+                <a href="tel:+380xxxxxxxxx" class="footer-link">+380 XX XXX XX XX</a>
+                <a href="mailto:info@prometeylabs.com" class="footer-link">info@prometeylabs.com</a>
+                <a href="https://t.me/prometeylabs" class="footer-link" target="_blank" rel="noopener">Telegram</a>
+                <a href="https://instagram.com/prometeylabs" class="footer-link" target="_blank"
+                    rel="noopener">Instagram</a>
+                <a href="#" class="footer-link">м. Київ, Україна</a>
+            </div>
+
+            <!-- Корисне -->
+            <div class="footer-section">
+                <h3>Корисна інформація</h3>
+                <a href="{% url 'blog' %}" class="footer-link">Блог про веб-розробку</a>
+                <a href="{% url 'calculator' %}" class="footer-link">Калькулятор вартості сайту</a>
+                <a href="{% url 'developer' %}" class="footer-link">Курси програмування</a>
+                <a href="#" class="footer-link">FAQ</a>
+                <a href="#" class="footer-link">Політика конфіденційності</a>
+                <a href="#" class="footer-link">Умови співпраці</a>
+            </div>
+        </div>
+
+        <!-- Footer Bottom -->
+        <div class="footer-bottom">
+            <p>&copy; {{ current_year|default:"2024" }} PrometeyLabs. Усі права захищені.
+                <strong>Розробка сайтів під ключ у Києві, Україні та світі.</strong>
+            </p>
+            <p>Створюємо сучасні веб-рішення: <strong>сайти під ключ</strong>, <strong>Telegram боти</strong>,
+                налаштування реклами Google Ads, <strong>курси програмування</strong>.
+                Конкурентні ціни, високі технології, швидка розробка.</p>
+        </div>
+    </div>
+</footer>

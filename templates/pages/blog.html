@@ -1,0 +1,123 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ page_title }}{% endblock %}
+{% block description %}{{ meta_description }}{% endblock %}
+{% block og_title %}{{ og_title }}{% endblock %}
+{% block keywords %}{{ keywords }}{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/blog.css' %}">
+{% endblock %}
+
+{% block content %}
+<!-- Blog Header -->
+<section class="blog-header">
+    <div class="container">
+        <div class="grid-70-30">
+            <div class="blog-intro">
+                <h1 class="text-mega color-red mb-lg">БЛОГ</h1>
+                <p class="text-medium mb-sm">
+                    Корисні статті про веб-розробку, курси програмування,
+                    створення сайтів під ключ та Telegram ботів
+                </p>
+                <p class="text-base">
+                    Поради від досвідчених розробників PrometeyLabs
+                </p>
+            </div>
+
+            <div class="blog-nav">
+                <span class="nav-page-number text-page color-red">05</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Blog Articles Grid -->
+<section class="blog-articles bg-white">
+    <div class="container">
+        <div class="articles-grid">
+            {% for post in page_obj %}
+            <article class="blog-card" data-article="{{ forloop.counter }}">
+                <div class="card-header">
+                    <span class="article-number text-page color-red">{{ forloop.counter|stringformat:"02d" }}</span>
+                    <time class="article-date text-small">{{ post.created_at|date:"d.m.Y" }}</time>
+                </div>
+
+                <div class="card-content">
+                    <h2 class="text-medium mb-xs">
+                        <a href="{{ post.get_absolute_url }}" class="article-link">{{ post.title }}</a>
+                    </h2>
+                    <p class="text-base mb-sm article-excerpt">{{ post.excerpt }}</p>
+
+                    <div class="article-keywords">
+                        {% for keyword in post.keywords|split:"," %}
+                        {% if keyword.strip %}
+                        <span class="keyword-tag">{{ keyword.strip }}</span>
+                        {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <div class="card-footer">
+                    <a href="{{ post.get_absolute_url }}" class="read-more-link text-base color-red">
+                        Читати далі →
+                    </a>
+                </div>
+            </article>
+            {% empty %}
+            <div class="no-articles">
+                <h3 class="text-medium color-red mb-sm">Статті готуються</h3>
+                <p class="text-base">Найближчим часом тут з'являться корисні статті про веб-розробку</p>
+            </div>
+            {% endfor %}
+        </div>
+
+        <!-- Pagination -->
+        {% if page_obj.has_other_pages %}
+        <div class="blog-pagination">
+            {% if page_obj.has_previous %}
+            <a href="?page={{ page_obj.previous_page_number }}" class="pagination-link">← Попередня</a>
+            {% endif %}
+
+            <span class="pagination-info text-base">
+                Сторінка {{ page_obj.number }} з {{ page_obj.paginator.num_pages }}
+            </span>
+
+            {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}" class="pagination-link">Наступна →</a>
+            {% endif %}
+        </div>
+        {% endif %}
+    </div>
+</section>
+
+<!-- SEO Content Block -->
+<section class="blog-seo bg-beige">
+    <div class="container">
+        <div class="seo-content text-center">
+            <h2 class="text-large color-red mb-md">Все про веб-розробку</h2>
+            <div class="seo-grid">
+                <div class="seo-item">
+                    <h3 class="text-medium color-red mb-xs">Курси програмування</h3>
+                    <p class="text-base">Навчання Python, Django, React з нуля до junior developer</p>
+                </div>
+
+                <div class="seo-item">
+                    <h3 class="text-medium color-red mb-xs">Сайти під ключ</h3>
+                    <p class="text-base">Розробка сучасних веб-сайтів з адаптивним дизайном</p>
+                </div>
+
+                <div class="seo-item">
+                    <h3 class="text-medium color-red mb-xs">Telegram боти</h3>
+                    <p class="text-base">Автоматизація бізнесу з допомогою розумних ботів</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/blog.js' %}"></script>
+{% endblock %}

@@ -1,0 +1,159 @@
+/* CALCULATOR.CSS - Стилі для калькулятора згідно STYLE.MDC */
+
+.calculator-info {
+    padding: var(--space-xl) 0;
+    position: relative;
+}
+
+.calculator-info h1 {
+    margin-bottom: var(--space-xl);
+}
+
+.calculator-info h2 {
+    margin-bottom: var(--space-lg);
+}
+
+/* Декоративні елементи */
+.calculator-info::before {
+    content: '⌘';
+    position: absolute;
+    top: var(--space-sm);
+    left: var(--space-sm);
+    color: var(--color-red);
+    font-size: 28px;
+    opacity: 0.5;
+}
+
+.calculator-info::after {
+    content: '⟲';
+    position: absolute;
+    bottom: var(--space-sm);
+    right: var(--space-sm);
+    color: var(--color-red);
+    font-size: 32px;
+    font-weight: 700;
+    opacity: 0.4;
+}
+
+.benefits-list {
+    list-style: none;
+    padding: 0;
+}
+
+.benefits-list li {
+    position: relative;
+    padding-left: var(--space-xs);
+    margin-bottom: 8px;
+}
+
+.benefits-list li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--color-red);
+    font-weight: 700;
+}
+
+.test-section {
+    padding: var(--space-xl) 0;
+    background: var(--color-gray);
+    position: relative;
+}
+
+/* Декоративні елементи для test section */
+.test-section::before {
+    content: '⚡';
+    position: absolute;
+    top: var(--space-sm);
+    right: var(--space-sm);
+    color: var(--color-red);
+    font-size: 24px;
+    opacity: 0.6;
+}
+
+.test-form {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.question {
+    margin-bottom: var(--space-md);
+}
+
+.question h3 {
+    margin-bottom: var(--space-sm);
+}
+
+.options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.options label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    padding: 10px;
+    border: 2px solid transparent;
+    background: var(--color-white);
+    transition: all 0.3s ease-out;
+}
+
+.options label:hover {
+    border-color: var(--color-red);
+}
+
+.options input[type="radio"] {
+    margin-right: 10px;
+}
+
+.options input[type="radio"]:checked+span {
+    color: var(--color-red);
+    font-weight: 600;
+}
+
+/* CTA Box з декоративним елементом */
+.cta-sidebar .cta-box {
+    position: relative;
+}
+
+.cta-sidebar .cta-box::before {
+    content: '●';
+    position: absolute;
+    top: -8px;
+    right: var(--space-xs);
+    color: var(--color-red);
+    font-size: 16px;
+    background: var(--color-white);
+    padding: 0 5px;
+}
+
+/* ===== АДАПТАЦІЯ МОБІЛЬНІ ===== */
+@media (max-width: 767px) {
+    .calculator-info {
+        padding: var(--space-md) 0;
+    }
+
+    .test-section {
+        padding: var(--space-md) 0;
+    }
+
+    .calculator-info::before {
+        font-size: 20px;
+        top: var(--space-xs);
+        left: var(--space-xs);
+    }
+
+    .calculator-info::after {
+        font-size: 24px;
+        bottom: var(--space-xs);
+        right: var(--space-xs);
+    }
+
+    .test-section::before {
+        font-size: 18px;
+        top: var(--space-xs);
+        right: var(--space-xs);
+    }
+}

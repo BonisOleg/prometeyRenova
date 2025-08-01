@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ page_title }}{% endblock %}
+{% block description %}{{ meta_description }}{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/contacts.css' %}">
+{% endblock %}
+
+{% block content %}
+<!-- Contacts Header -->
+<section class="contacts-header bg-beige">
+    <div class="container">
+        <h1 class="text-large color-red mb-md text-center">Зв'яжіться з нами</h1>
+        <p class="text-base text-center">
+            Готові обговорити ваш проект та підібрати найкраще рішення
+        </p>
+    </div>
+</section>
+
+<!-- Contacts Content -->
+<section class="contacts-content bg-white">
+    <div class="container">
+        <div class="grid-60-40">
+            <div class="contact-info">
+                <h2 class="text-medium color-red mb-md">Наші контакти</h2>
+
+                <div class="contact-item mb-md">
+                    <h3 class="text-sub mb-xs">Телефон</h3>
+                    <a href="tel:+380xxxxxxxxx" class="contact-link text-base">
+                        +380 XX XXX XX XX
+                    </a>
+                </div>
+
+                <div class="contact-item mb-md">
+                    <h3 class="text-sub mb-xs">Email</h3>
+                    <a href="mailto:info@prometeylabs.com" class="contact-link text-base">
+                        info@prometeylabs.com
+                    </a>
+                </div>
+
+                <div class="contact-item mb-md">
+                    <h3 class="text-sub mb-xs">Соціальні мережі</h3>
+                    <div class="social-links">
+                        <a href="https://t.me/prometeylabs" class="social-link btn btn-secondary" target="_blank">
+                            Telegram
+                        </a>
+                        <a href="https://instagram.com/prometeylabs" class="social-link btn btn-secondary"
+                            target="_blank">
+                            Instagram
+                        </a>
+                    </div>
+                </div>
+
+                <div class="contact-item">
+                    <h3 class="text-sub mb-xs">Адреса</h3>
+                    <p class="text-base">м. Київ, Україна</p>
+                    <p class="text-small">Працюємо віддалено по всьому світу</p>
+                </div>
+            </div>
+
+            <div class="contact-form">
+                <h2 class="text-medium color-red mb-md">Написати нам</h2>
+
+                <form data-form-type="contact" method="post">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="contact-name" class="form-label">Ваше ім'я *</label>
+                        <input type="text" id="contact-name" name="name" class="form-input" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="contact-phone" class="form-label">Номер телефону *</label>
+                        <input type="tel" id="contact-phone" name="phone" class="form-input" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="contact-email" class="form-label">Email</label>
+                        <input type="email" id="contact-email" name="email" class="form-input">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="contact-message" class="form-label">Повідомлення *</label>
+                        <textarea id="contact-message" name="message" class="form-input form-textarea" required
+                            placeholder="Розкажіть про ваш проект..."></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Відправити повідомлення</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/contacts.js' %}"></script>
+{% endblock %}

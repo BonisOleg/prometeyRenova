@@ -1,0 +1,182 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ page_title }}{% endblock %}
+{% block description %}{{ meta_description }}{% endblock %}
+{% block og_title %}{{ og_title }}{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/home.css' %}">
+{% endblock %}
+
+{% block content %}
+<!-- Hero Section з фоновим відео -->
+<section class="hero-section full-height">
+    <!-- Фонові відео для декстопу та мобільних -->
+    <video class="video-background desktop-video" autoplay muted loop playsinline>
+        <source src="{% static 'videos/desktop/hero-bg.mp4' %}" type="video/mp4">
+    </video>
+    <video class="video-background mobile-video" autoplay muted loop playsinline>
+        <source src="{% static 'videos/mobile/hero-bg-mobile.mp4' %}" type="video/mp4">
+    </video>
+
+    <!-- Overlay для кращої читабельності -->
+    <div class="video-overlay"></div>
+
+    <div class="hero-content">
+        <div class="container">
+            <div class="hero-text text-center">
+                <h1 class="text-mega color-red mb-lg">PrometeyLabs</h1>
+                <p class="text-large color-white mb-xl">
+                    <span class="hero-services">сайти</span> ·
+                    <span class="hero-services">telegram боти</span> ·
+                    <span class="hero-services">реклама</span> ·
+                    <span class="hero-services">ведення соціальних мереж</span> ·
+                    <span class="hero-services">навчання на веб розробника</span>
+                </p>
+
+                <!-- CTA Buttons -->
+                <div class="hero-buttons">
+                    <a href="https://t.me/prometeylabs" class="btn btn-primary" target="_blank">
+                        хочу консультацію зараз
+                    </a>
+                    <button class="btn btn-secondary" data-modal="developer-modal">
+                        хочу стати розробником
+                    </button>
+                    <button class="btn btn-secondary" data-modal="site-request-modal">
+                        залишити заявку на сайт
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Services Section - 100% ширини з SEO контентом -->
+<section class="services-section full-width">
+    <div class="container">
+        <div class="services-content">
+            <h2 class="text-large color-red mb-xl text-center">Наші послуги</h2>
+
+            <!-- Сітка послуг з SEO текстом -->
+            <div class="services-grid">
+                <div class="service-item">
+                    <span class="service-number text-page color-red">01</span>
+                    <h3 class="text-medium mb-sm">Сайти під ключ</h3>
+                    <p class="text-base mb-sm">
+                        Створюємо <strong>сайти під ключ</strong> з адаптивним дизайном, швидким завантаженням
+                        та SEO-оптимізацією. Використовуємо найновіші технології для максимальної ефективності.
+                        Лендінги, корпоративні сайти, інтернет-магазини з гарантією якості.
+                    </p>
+                    <div class="service-keywords">
+                        <span class="keyword">React</span>
+                        <span class="keyword">Django</span>
+                        <span class="keyword">WordPress</span>
+                        <span class="keyword">SEO</span>
+                    </div>
+                </div>
+
+                <div class="service-item">
+                    <span class="service-number text-page color-red">02</span>
+                    <h3 class="text-medium mb-sm">Telegram боти</h3>
+                    <p class="text-base mb-sm">
+                        Автоматизуємо ваш бізнес за допомогою розумних <strong>Telegram ботів</strong>.
+                        Від простих чат-ботів до складних систем з CRM інтеграціями, платіжними системами
+                        та автоматизацією бізнес-процесів. Збільшуємо продажі на 40%.
+                    </p>
+                    <div class="service-keywords">
+                        <span class="keyword">Python</span>
+                        <span class="keyword">aiogram</span>
+                        <span class="keyword">PostgreSQL</span>
+                        <span class="keyword">API</span>
+                    </div>
+                </div>
+
+                <div class="service-item">
+                    <span class="service-number text-page color-red">03</span>
+                    <h3 class="text-medium mb-sm">Реклама Google Ads</h3>
+                    <p class="text-base mb-sm">
+                        Налаштовуємо ефективну <strong>рекламу Google Ads</strong> для максимального ROI.
+                        Аналітика, оптимізація, постійний моніторинг результатів. Знижуємо вартість кліка
+                        та підвищуємо конверсію з допомогою актуальних стратегій 2024 року.
+                    </p>
+                    <div class="service-keywords">
+                        <span class="keyword">Google Ads</span>
+                        <span class="keyword">PPC</span>
+                        <span class="keyword">Analytics</span>
+                        <span class="keyword">ROI</span>
+                    </div>
+                </div>
+
+                <div class="service-item">
+                    <span class="service-number text-page color-red">04</span>
+                    <h3 class="text-medium mb-sm">Ведення соціальних мереж</h3>
+                    <p class="text-base mb-sm">
+                        Професійне <strong>ведення соціальних мереж</strong> для вашого бізнесу.
+                        Створюємо контент-стратегію, дизайн постів, налаштовуємо таргетовану рекламу.
+                        Instagram, Facebook, TikTok - повний спектр SMM послуг.
+                    </p>
+                    <div class="service-keywords">
+                        <span class="keyword">SMM</span>
+                        <span class="keyword">Content</span>
+                        <span class="keyword">Design</span>
+                        <span class="keyword">Targeting</span>
+                    </div>
+                </div>
+
+                <div class="service-item">
+                    <span class="service-number text-page color-red">05</span>
+                    <h3 class="text-medium mb-sm">Навчання веб-розробки</h3>
+                    <p class="text-base mb-sm">
+                        <strong>Курси програмування</strong> з нуля до junior developer з гарантією працевлаштування.
+                        Python, Django, React, JavaScript - навчання на реальних проектах. Індивідуальні
+                        та групові заняття з досвідченими менторами.
+                    </p>
+                    <div class="service-keywords">
+                        <span class="keyword">Python</span>
+                        <span class="keyword">React</span>
+                        <span class="keyword">JavaScript</span>
+                        <span class="keyword">Django</span>
+                    </div>
+                </div>
+
+                <div class="service-item">
+                    <span class="service-number text-page color-red">06</span>
+                    <h3 class="text-medium mb-sm">Мобільні додатки</h3>
+                    <p class="text-base mb-sm">
+                        Розробка <strong>мобільних додатків</strong> для iOS та Android.
+                        React Native, Flutter - кросплатформенна розробка для швидкого виходу
+                        на ринок. E-commerce, фінтех, соціальні мережі - любий тип додатків.
+                    </p>
+                    <div class="service-keywords">
+                        <span class="keyword">React Native</span>
+                        <span class="keyword">Flutter</span>
+                        <span class="keyword">iOS</span>
+                        <span class="keyword">Android</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CTA секція -->
+            <div class="services-cta text-center mt-xl">
+                <h3 class="text-medium color-red mb-sm">Готові почати?</h3>
+                <p class="text-base mb-md">
+                    Зв'яжіться з нами для безкоштовної консультації та розрахунку вартості проєкту
+                </p>
+                <div class="cta-buttons">
+                    <a href="{% url 'calculator' %}" class="btn btn-primary">
+                        Розрахувати вартість
+                    </a>
+                    <a href="https://t.me/prometeylabs" class="btn btn-secondary" target="_blank">
+                        Telegram консультація
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/home.js' %}"></script>
+{% endblock %}

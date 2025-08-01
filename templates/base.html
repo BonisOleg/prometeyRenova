@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- SEO Meta Tags -->
+    <title>{% block title %}PrometeyLabs - Розробка сайтів під ключ | Telegram боти | Реклама{% endblock %}</title>
+    <meta name="description"
+        content="{% block description %}PrometeyLabs - розробка сайтів під ключ, Telegram боти, налаштування реклами Google Ads, ведення соцмереж, навчання веб-розробки. Конкурентні ціни, сучасні технології.{% endblock %}">
+    <meta name="keywords"
+        content="{% block keywords %}розробка сайтів, сайт під ключ, telegram бот, реклама google ads, веб розробка, навчання програмування{% endblock %}">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="{% block og_title %}PrometeyLabs - Розробка сайтів під ключ{% endblock %}">
+    <meta property="og:description"
+        content="{% block og_description %}Створюємо сайти під ключ, Telegram боти, налаштовуємо рекламу. Сучасні технології, конкурентні ціни.{% endblock %}">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ request.build_absolute_uri }}">
+    <meta property="og:image"
+        content="{% block og_image %}{% load static %}{% static 'images/og-image.jpg' %}{% endblock %}">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="{% load static %}{% static 'images/favicon.ico' %}">
+    <link rel="apple-touch-icon" href="{% load static %}{% static 'images/apple-touch-icon.png' %}">
+
+    <!-- CSS -->
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    {% block extra_css %}{% endblock %}
+
+    <!-- Preconnect for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <!-- Schema.org structured data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "PrometeyLabs",
+        "description": "Розробка сайтів під ключ, Telegram боти, реклама",
+        "url": "{{ request.build_absolute_uri }}",
+        "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+380-XX-XXX-XX-XX",
+            "contactType": "Customer Service"
+        },
+        "sameAs": [
+            "https://t.me/prometeylabs",
+            "https://instagram.com/prometeylabs"
+        ]
+    }
+    </script>
+
+    {% block extra_head %}{% endblock %}
+</head>
+
+<body>
+    <!-- Header & Navigation -->
+    {% include 'components/header.html' %}
+
+    <!-- Mobile Menu -->
+    {% include 'components/burger_menu.html' %}
+
+    <!-- Main Content -->
+    <main class="main-content">
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Footer -->
+    {% include 'components/footer.html' %}
+
+    <!-- Call Button -->
+    <a href="tel:+380xxxxxxxxx" class="call-button" aria-label="Замовити дзвінок">
+        Замовити дзвінок
+    </a>
+
+    <!-- Modals -->
+    {% include 'components/modals.html' %}
+
+    <!-- JavaScript -->
+    <script src="{% static 'js/base.js' %}"></script>
+    {% block extra_js %}{% endblock %}
+
+    <!-- CSRF Token for AJAX -->
+    {% csrf_token %}
+
+    <!-- Analytics (буде додано пізніше) -->
+    {% block analytics %}{% endblock %}
+</body>
+
+</html>

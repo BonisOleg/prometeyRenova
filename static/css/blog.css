@@ -1,0 +1,311 @@
+/* BLOG.CSS - Блог в стилі журналу згідно STYLE.MDC */
+
+/* ===== BLOG HEADER ===== */
+.blog-header {
+    padding: var(--space-xl) 0;
+    background: var(--color-beige);
+    position: relative;
+}
+
+.blog-intro h1 {
+    margin-bottom: var(--space-lg);
+}
+
+.blog-nav {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
+}
+
+/* Декоративні елементи */
+.blog-header::before {
+    content: '◆';
+    position: absolute;
+    top: var(--space-sm);
+    right: var(--space-sm);
+    color: var(--color-red);
+    font-size: 24px;
+    opacity: 0.6;
+}
+
+.blog-header::after {
+    content: '∴';
+    position: absolute;
+    bottom: var(--space-sm);
+    left: var(--space-sm);
+    color: var(--color-red);
+    font-size: 32px;
+    font-weight: 700;
+    opacity: 0.4;
+}
+
+/* ===== ARTICLES GRID ===== */
+.blog-articles {
+    padding: var(--space-xl) 0;
+}
+
+.articles-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: var(--space-md);
+    margin-bottom: var(--space-lg);
+}
+
+/* ===== BLOG CARDS ===== */
+.blog-card {
+    background: var(--color-beige);
+    border: 3px solid transparent;
+    padding: var(--space-sm);
+    transition: all 0.4s ease-out;
+    cursor: pointer;
+    position: relative;
+    min-height: 300px;
+    display: flex;
+    flex-direction: column;
+}
+
+.blog-card:hover {
+    border-color: var(--color-red);
+    transform: translateY(-5px);
+    background: var(--color-white);
+}
+
+/* Card Header */
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--space-sm);
+}
+
+.article-number {
+    font-weight: 900;
+    opacity: 0.8;
+}
+
+.article-date {
+    color: var(--color-black);
+    opacity: 0.7;
+}
+
+/* Card Content */
+.card-content {
+    flex: 1;
+    margin-bottom: var(--space-sm);
+}
+
+.article-link {
+    color: var(--color-black);
+    text-decoration: none;
+    transition: color 0.3s ease-out;
+}
+
+.article-link:hover {
+    color: var(--color-red);
+}
+
+.article-excerpt {
+    line-height: 1.5;
+    margin-bottom: var(--space-sm);
+}
+
+/* Keywords */
+.article-keywords {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: var(--space-xs);
+}
+
+.keyword-tag {
+    font-size: 10px;
+    background: var(--color-red);
+    color: var(--color-white);
+    padding: 3px 6px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Card Footer */
+.card-footer {
+    margin-top: auto;
+}
+
+.read-more-link {
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease-out;
+    display: inline-block;
+}
+
+.read-more-link:hover {
+    transform: translateX(5px);
+}
+
+/* ===== PAGINATION ===== */
+.blog-pagination {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--space-sm) 0;
+    border-top: 2px solid var(--color-red);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.pagination-link {
+    color: var(--color-red);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease-out;
+}
+
+.pagination-link:hover {
+    color: var(--color-black);
+}
+
+.pagination-info {
+    color: var(--color-black);
+    opacity: 0.7;
+}
+
+/* ===== SEO CONTENT BLOCK ===== */
+.blog-seo {
+    padding: var(--space-xl) 0;
+    position: relative;
+}
+
+.seo-content h2 {
+    margin-bottom: var(--space-lg);
+}
+
+.seo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--space-md);
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.seo-item {
+    padding: var(--space-sm);
+    border-left: 3px solid var(--color-red);
+}
+
+/* Декоративні елементи для SEO блоку */
+.blog-seo::before {
+    content: '※';
+    position: absolute;
+    top: var(--space-sm);
+    left: var(--space-sm);
+    color: var(--color-red);
+    font-size: 28px;
+    opacity: 0.5;
+}
+
+.blog-seo::after {
+    content: '⟲';
+    position: absolute;
+    bottom: var(--space-sm);
+    right: var(--space-sm);
+    color: var(--color-red);
+    font-size: 32px;
+    font-weight: 700;
+    opacity: 0.4;
+}
+
+/* ===== NO ARTICLES ===== */
+.no-articles {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: var(--space-xl);
+    background: var(--color-gray);
+    border: 2px solid var(--color-red);
+}
+
+/* ===== АДАПТАЦІЯ ПЛАНШЕТИ ===== */
+@media (max-width: 1024px) {
+    .blog-header {
+        padding: var(--space-md) 0;
+    }
+
+    .blog-articles {
+        padding: var(--space-md) 0;
+    }
+
+    .articles-grid {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: var(--space-sm);
+    }
+
+    .blog-seo {
+        padding: var(--space-md) 0;
+    }
+}
+
+/* ===== АДАПТАЦІЯ МОБІЛЬНІ (iOS Safari) ===== */
+@media (max-width: 767px) {
+    .blog-header {
+        padding: var(--space-md) 0;
+    }
+
+    .articles-grid {
+        grid-template-columns: 1fr;
+        gap: var(--space-sm);
+    }
+
+    .blog-card {
+        min-height: 250px;
+        padding: var(--space-xs);
+    }
+
+    .seo-grid {
+        grid-template-columns: 1fr;
+        gap: var(--space-sm);
+    }
+
+    .blog-pagination {
+        flex-direction: column;
+        gap: var(--space-xs);
+        text-align: center;
+    }
+
+    /* Декоративні елементи для мобільних */
+    .blog-header::before,
+    .blog-seo::before {
+        font-size: 18px;
+        top: var(--space-xs);
+        right: var(--space-xs);
+        left: var(--space-xs);
+    }
+
+    .blog-header::after,
+    .blog-seo::after {
+        font-size: 24px;
+        bottom: var(--space-xs);
+        right: var(--space-xs);
+    }
+}
+
+/* ===== АНІМАЦІЇ ===== */
+@media (prefers-reduced-motion: no-preference) {
+    .blog-card {
+        transition: all 0.4s ease-out;
+    }
+
+    .read-more-link {
+        transition: all 0.3s ease-out;
+    }
+
+    .blog-card:hover .read-more-link {
+        transform: translateX(3px);
+    }
+}
+
+/* ===== iOS SAFARI СПЕЦИФІКА ===== */
+@supports (-webkit-touch-callout: none) {
+    .blog-card {
+        -webkit-transform: translateZ(0);
+    }
+}

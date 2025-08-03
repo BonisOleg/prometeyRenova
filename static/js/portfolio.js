@@ -87,16 +87,16 @@ function initCardStackEffect() {
     updateCardStates();
 
     // Обробник скролу з throttling
-    let scrollTimeout;
-    window.addEventListener('scroll', () => {
+        let scrollTimeout;
+        window.addEventListener('scroll', () => {
         if (scrollTimeout) {
             clearTimeout(scrollTimeout);
         }
 
-        scrollTimeout = setTimeout(() => {
+            scrollTimeout = setTimeout(() => {
             handleScroll();
-        }, 16); // ~60fps
-    }, { passive: true });
+            }, 16); // ~60fps
+        }, { passive: true });
 
     function handleScroll() {
         if (isScrolling) return;
@@ -216,13 +216,13 @@ function closeAllModals() {
 // Viewport height для iOS Safari
 function initViewportHeight() {
     function setVH() {
-        const vh = window.innerHeight * 0.01;
-        document.documentElement.style.setProperty('--vh', `${vh}px`);
+                const vh = window.innerHeight * 0.01;
+                document.documentElement.style.setProperty('--vh', `${vh}px`);
     }
 
-    setVH();
-    window.addEventListener('resize', setVH);
-    window.addEventListener('orientationchange', () => {
+            setVH();
+            window.addEventListener('resize', setVH);
+            window.addEventListener('orientationchange', () => {
         setTimeout(setVH, 100);
     });
 }

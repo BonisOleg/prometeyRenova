@@ -5,6 +5,7 @@
     position: relative;
     width: 100%;
     min-height: 100vh;
+    max-height: 100vh;
     min-height: calc(var(--vh, 1vh) * 100);
     display: flex;
     align-items: center;
@@ -225,6 +226,7 @@
 @media (max-width: 1024px) {
     .hero-section {
         min-height: 80vh;
+        max-height: 100vh;
         padding: var(--space-md) 0;
     }
 

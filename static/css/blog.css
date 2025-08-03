@@ -1,5 +1,75 @@
 /* BLOG.CSS - Блог в стилі журналу згідно STYLE.MDC */
 
+/* ===== BLOG HERO З ВІДЕО ===== */
+.blog-hero {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    max-height: 100vh;
+    min-height: calc(var(--vh, 1vh) * 100);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+/* Фонове відео */
+.video-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+}
+
+/* Responsive відео */
+@media (min-width: 768px) {
+    .mobile-video {
+        display: none;
+    }
+}
+
+@media (max-width: 767px) {
+    .desktop-video {
+        display: none;
+    }
+}
+
+/* Overlay для читабельності тексту */
+.video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 2;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 3;
+    width: 100%;
+    padding: var(--space-xl) 0;
+}
+
+.hero-text {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.hero-text h1 {
+    margin-bottom: var(--space-xl);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.hero-text p {
+    margin-bottom: var(--space-xl);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+}
+
 /* ===== BLOG HEADER ===== */
 .blog-header {
     padding: var(--space-xl) 0;
@@ -226,6 +296,20 @@
 
 /* ===== АДАПТАЦІЯ ПЛАНШЕТИ ===== */
 @media (max-width: 1024px) {
+    .blog-hero {
+        min-height: 80vh;
+    }
+
+    .hero-text h1 {
+        font-size: 80px;
+        margin-bottom: var(--space-lg);
+    }
+
+    .hero-text p {
+        font-size: 18px;
+        margin-bottom: var(--space-lg);
+    }
+
     .blog-header {
         padding: var(--space-md) 0;
     }
@@ -246,6 +330,27 @@
 
 /* ===== АДАПТАЦІЯ МОБІЛЬНІ (iOS Safari) ===== */
 @media (max-width: 767px) {
+    .blog-hero {
+        min-height: 60vh;
+        min-height: calc(var(--vh, 1vh) * 60);
+    }
+
+    .hero-content {
+        padding: var(--space-md) 0;
+    }
+
+    .hero-text h1 {
+        font-size: 60px;
+        margin-bottom: var(--space-md);
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+    }
+
+    .hero-text p {
+        font-size: 16px;
+        margin-bottom: var(--space-md);
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+    }
+
     .blog-header {
         padding: var(--space-md) 0;
     }

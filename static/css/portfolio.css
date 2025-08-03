@@ -1,4 +1,4 @@
-/* PORTFOLIO.CSS - Card Stack ефект з фоновими відео згідно STYLE.MDC */
+/* PORTFOLIO.CSS - Sticky Scroll ефект з фоновими відео згідно STYLE.MDC */
 
 /* ===== PORTFOLIO HERO З ВІДЕО ===== */
 .portfolio-hero {
@@ -23,7 +23,7 @@
     z-index: 1;
 }
 
-/* Responsive відео */
+/* Responsive відео для hero */
 @media (min-width: 768px) {
     .mobile-video {
         display: none;
@@ -77,25 +77,23 @@
     text-decoration-thickness: 3px;
 }
 
-/* ===== CARD STACK EFFECT SYSTEM ===== */
+/* ===== STICKY SCROLL EFFECT SYSTEM ===== */
 .portfolio-projects {
     position: relative;
+    background: #000;
 }
 
-.project-card {
-    position: relative;
+/* Sticky секції для кожного проекту */
+.sticky-section {
+    position: sticky;
+    top: 0;
     height: 100vh;
     height: calc(var(--vh, 1vh) * 100);
     display: flex;
     align-items: center;
+    justify-content: center;
     overflow: hidden;
-
-    /* Stack з z-index */
-    z-index: 10;
-
-    /* Готовність до перекриття */
-    will-change: transform, z-index;
-    transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    background: #000;
 }
 
 /* Фонові відео для проектів */
@@ -109,138 +107,56 @@
     z-index: 1;
 }
 
-.project-overlay {
+/* Responsive відео для проектів */
+@media (min-width: 768px) {
+    .sticky-section .mobile-video {
+        display: none;
+    }
+}
+
+@media (max-width: 767px) {
+    .sticky-section .desktop-video {
+        display: none;
+    }
+}
+
+/* ===== КНОПКА ПОЗИЦІОНУВАННЯ ===== */
+.sticky-section .btn-primary {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(135deg,
-            rgba(0, 0, 0, 0.7) 0%,
-            rgba(220, 20, 60, 0.2) 50%,
-            rgba(0, 0, 0, 0.8) 100%);
-    z-index: 2;
+    top: 60px;
+    left: 60px;
+    z-index: 4;
 }
 
-/* Контент поверх відео */
-.project-card .container {
-    position: relative;
-    z-index: 3;
-}
+/* ===== STICKY SCROLL STATES ===== */
 
-/* ===== PROJECT CONTENT ===== */
-.project-number {
-    display: block;
-    margin-bottom: var(--space-sm);
-    font-size: 48px;
-    font-weight: 900;
-    line-height: 1;
-    opacity: 0.8;
-}
-
-.project-content h2 {
-    font-weight: 700;
-    margin-bottom: var(--space-sm);
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-}
-
-.project-content p {
-    line-height: 1.6;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
-    margin-bottom: var(--space-sm);
-}
-
-.project-content strong {
-    color: var(--color-red);
-    font-weight: 700;
-}
-
-/* Project Features */
-.project-features {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.project-features li {
-    position: relative;
-    padding-left: var(--space-xs);
-    margin-bottom: 8px;
-    opacity: 0.9;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
-}
-
-.project-features li::before {
-    content: '▸';
-    position: absolute;
-    left: 0;
-    color: var(--color-red);
-    font-weight: 700;
-}
-
-/* ===== PROJECT PREVIEW ===== */
-.project-preview {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.preview-screen {
-    width: 100%;
-    max-width: 350px;
-    height: 250px;
-    border: 3px solid var(--color-red);
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    transition: all 0.4s ease-out;
-}
-
-.screen-placeholder {
-    text-align: center;
-}
-
-.preview-text {
-    color: var(--color-white);
-    font-weight: 700;
-    font-size: var(--font-medium);
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
-}
-
-/* ===== CARD STACK STATES ===== */
-
-/* Активна картка (поточна) */
-.project-card.active {
+/* Активна секція (поточна) */
+.sticky-section.active {
     z-index: 50;
-    transform: translateY(0) scale(1);
 }
 
-/* Картка що зникає (йде вгору) */
-.project-card.exiting {
+/* Секція що зникає (йде вгору) */
+.sticky-section.exiting {
     z-index: 60;
-    transform: translateY(-100vh) scale(0.95);
+    transform: translateY(-100vh);
 }
 
-/* Картка що входить (знизу) */
-.project-card.entering {
+/* Секція що входить (знизу) */
+.sticky-section.entering {
     z-index: 40;
-    transform: translateY(100vh) scale(1.05);
+    transform: translateY(100vh);
 }
 
-/* Картки що чекають знизу */
-.project-card.pending {
+/* Секції що чекають знизу */
+.sticky-section.pending {
     z-index: 30;
-    transform: translateY(20px) scale(0.98);
+    transform: translateY(20px);
 }
 
-/* Картки що вже пройшли */
-.project-card.passed {
+/* Секції що вже пройшли */
+.sticky-section.passed {
     z-index: 20;
-    transform: translateY(-20px) scale(0.98);
+    transform: translateY(-20px);
     opacity: 0.8;
 }
 
@@ -255,21 +171,13 @@
         padding: var(--space-md) 0;
     }
 
-    .project-card {
+    .sticky-section {
         padding: var(--space-md) 0;
     }
 
-    .project-number {
-        font-size: 36px;
-    }
-
-    .preview-screen {
-        max-width: 280px;
-        height: 200px;
-    }
-
-    .preview-text {
-        font-size: var(--font-sub);
+    .sticky-section .btn-primary {
+        top: 40px;
+        left: 40px;
     }
 }
 
@@ -294,78 +202,51 @@
         font-size: var(--font-medium);
     }
 
-    .project-card {
-        padding: var(--space-sm) 0;
+    .sticky-section {
+        padding: 0;
         height: 100vh;
         height: -webkit-fill-available;
+        /* iOS Safari оптимізації */
+        -webkit-overflow-scrolling: touch;
+        transform: translateZ(0);
+        will-change: transform;
+        /* Виправлення для мобільних */
+        min-height: 100vh;
+        min-height: -webkit-fill-available;
     }
 
-    .project-number {
-        font-size: 24px;
-        margin-bottom: var(--space-xs);
-    }
-
-    .project-content h2 {
-        font-size: var(--font-large);
-        margin-bottom: var(--space-xs);
-    }
-
-    .project-content p {
-        font-size: var(--font-base);
-        margin-bottom: var(--space-xs);
-    }
-
-    .project-features {
+    .sticky-section .btn-primary {
+        top: 30px;
+        left: 20px;
         font-size: 14px;
-        margin-bottom: var(--space-sm);
-    }
-
-    .project-features li {
-        margin-bottom: 6px;
-        padding-left: 15px;
-    }
-
-    .preview-screen {
-        max-width: 250px;
-        height: 150px;
-        margin-top: var(--space-sm);
-    }
-
-    .preview-text {
-        font-size: var(--font-base);
+        padding: 12px 20px;
+        /* Touch оптимізація */
+        -webkit-tap-highlight-color: transparent;
+        touch-action: manipulation;
     }
 
     /* Спрощена анімація для мобільних */
-    .project-card.exiting {
-        transform: translateY(-100vh) scale(0.98);
+    .sticky-section.exiting {
+        transform: translateY(-100vh) translateZ(0);
     }
 
-    .project-card.entering {
-        transform: translateY(100vh) scale(1.02);
+    .sticky-section.entering {
+        transform: translateY(100vh) translateZ(0);
     }
 
-    .project-card.pending {
-        transform: translateY(10px) scale(0.99);
+    .sticky-section.pending {
+        transform: translateY(10px) translateZ(0);
     }
 
-    .project-card.passed {
-        transform: translateY(-10px) scale(0.99);
+    .sticky-section.passed {
+        transform: translateY(-10px) translateZ(0);
     }
 }
 
 /* ===== АНІМАЦІЇ ===== */
 @media (prefers-reduced-motion: no-preference) {
-    .project-card {
+    .sticky-section {
         transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    }
-
-    .preview-screen {
-        transition: all 0.4s ease-out;
-    }
-
-    .preview-screen:hover {
-        transform: scale(1.05);
-        box-shadow: 0 10px 30px rgba(220, 20, 60, 0.3);
     }
 
     .seo-highlight {
@@ -379,7 +260,7 @@
 }
 
 /* ===== PERFORMANCE OPTIMIZATIONS ===== */
-.project-card {
+.sticky-section {
     transform: translateZ(0);
     backface-visibility: hidden;
     perspective: 1000px;
@@ -390,15 +271,11 @@
     will-change: opacity;
 }
 
-.preview-screen {
-    will-change: transform;
-}
-
 /* ===== iOS SAFARI СПЕЦИФІКА ===== */
 @supports (-webkit-touch-callout: none) {
 
     .portfolio-hero,
-    .project-card {
+    .sticky-section {
         height: 100vh;
         height: -webkit-fill-available;
     }
@@ -408,20 +285,31 @@
         -webkit-transform: translateZ(0);
     }
 
-    .preview-screen {
-        -webkit-backdrop-filter: blur(10px);
+    /* Додаткові iOS оптимізації */
+    .sticky-section {
+        -webkit-overflow-scrolling: touch;
+        -webkit-transform: translateZ(0);
+        will-change: transform;
+    }
+
+    .sticky-section .btn-primary {
+        -webkit-tap-highlight-color: transparent;
+        touch-action: manipulation;
+    }
+
+    /* Виправлення для iPhone з вирізами */
+    @supports (padding: max(0px)) {
+        .sticky-section .btn-primary {
+            top: max(30px, env(safe-area-inset-top) + 10px);
+            left: max(20px, env(safe-area-inset-left) + 10px);
+        }
     }
 }
 
 /* ===== HOVER ЕФЕКТИ (тільки для декстопу) ===== */
 @media (hover: hover) {
-    .project-content .btn:hover {
+    .sticky-section .btn-primary:hover {
         transform: translateY(-2px);
         box-shadow: 0 8px 25px rgba(220, 20, 60, 0.4);
-    }
-
-    .preview-screen:hover {
-        border-color: var(--color-white);
-        background: rgba(255, 255, 255, 0.2);
     }
 }

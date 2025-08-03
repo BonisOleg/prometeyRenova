@@ -1,12 +1,13 @@
-// PORTFOLIO.JS - Card Stack ефект з фоновими відео
+// PORTFOLIO.JS - Sticky Scroll ефект з фоновими відео
 
 document.addEventListener('DOMContentLoaded', function () {
     // Ініціалізація всіх систем
     initVideoSystem();
     initScrollNavigation();
-    initCardStackEffect();
+    initStickyScrollEffect();
     initModalSystem();
     initViewportHeight();
+    initMobileOptimizations();
 });
 
 // Система фонових відео для портфоліо
@@ -29,7 +30,7 @@ function initVideoSystem() {
         video.addEventListener('error', () => {
             console.log('Portfolio video loading error, applying fallback');
             video.style.display = 'none';
-            const parent = video.closest('.portfolio-hero, .project-card');
+            const parent = video.closest('.portfolio-hero, .sticky-section');
             if (parent) {
                 parent.style.background = 'linear-gradient(135deg, #000000 0%, #1a1a1a 100%)';
             }
@@ -75,89 +76,120 @@ function initScrollNavigation() {
     });
 }
 
-// Card Stack ефект при скролі
-function initCardStackEffect() {
-    const projectCards = document.querySelectorAll('.project-card');
-    if (projectCards.length === 0) return;
+// Sticky Scroll ефект при скролі
+function initStickyScrollEffect() {
+    const stickySections = document.querySelectorAll('.sticky-section');
+    if (stickySections.length === 0) return;
 
-    let currentCardIndex = 0;
+    let currentSectionIndex = 0;
     let isScrolling = false;
+    let isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
     // Встановлюємо початковий стан
-    updateCardStates();
+    updateSectionStates();
 
     // Обробник скролу з throttling
-        let scrollTimeout;
-        window.addEventListener('scroll', () => {
+    let scrollTimeout;
+    window.addEventListener('scroll', () => {
         if (scrollTimeout) {
             clearTimeout(scrollTimeout);
         }
 
-            scrollTimeout = setTimeout(() => {
+        scrollTimeout = setTimeout(() => {
             handleScroll();
-            }, 16); // ~60fps
-        }, { passive: true });
+        }, isMobile ? 32 : 16); // ~30fps для мобільних, ~60fps для десктопу
+    }, { passive: true });
 
     function handleScroll() {
         if (isScrolling) return;
 
         const scrollTop = window.pageYOffset;
         const windowHeight = window.innerHeight;
-        const documentHeight = document.documentElement.scrollHeight;
+        const heroHeight = document.querySelector('.portfolio-hero').offsetHeight;
 
-        // Розраховуємо поточну картку на основі скролу
-        const scrollProgress = scrollTop / (documentHeight - windowHeight);
-        const newCardIndex = Math.min(
-            Math.floor(scrollProgress * projectCards.length),
-            projectCards.length - 1
+        // Розраховуємо поточну секцію на основі скролу після hero
+        const scrollAfterHero = Math.max(0, scrollTop - heroHeight);
+        const sectionHeight = windowHeight;
+        const newSectionIndex = Math.min(
+            Math.floor(scrollAfterHero / sectionHeight),
+            stickySections.length - 1
         );
 
-        if (newCardIndex !== currentCardIndex) {
-            currentCardIndex = newCardIndex;
-            updateCardStates();
+        if (newSectionIndex !== currentSectionIndex) {
+            currentSectionIndex = newSectionIndex;
+            updateSectionStates();
         }
     }
 
-    function updateCardStates() {
-        projectCards.forEach((card, index) => {
+    function updateSectionStates() {
+        stickySections.forEach((section, index) => {
             // Очищуємо всі класи
-            card.classList.remove('active', 'exiting', 'entering', 'pending', 'passed');
+            section.classList.remove('active', 'exiting', 'entering', 'pending', 'passed');
 
-            if (index === currentCardIndex) {
-                card.classList.add('active');
-            } else if (index < currentCardIndex) {
-                card.classList.add('passed');
+            if (index === currentSectionIndex) {
+                section.classList.add('active');
+            } else if (index < currentSectionIndex) {
+                section.classList.add('passed');
             } else {
-                card.classList.add('pending');
+                section.classList.add('pending');
             }
         });
     }
 
     // Keynavigation для розробки
     document.addEventListener('keydown', (e) => {
-        if (e.key === 'ArrowDown' && currentCardIndex < projectCards.length - 1) {
-            currentCardIndex++;
-            updateCardStates();
-            smoothScrollToCard(currentCardIndex);
-        } else if (e.key === 'ArrowUp' && currentCardIndex > 0) {
-            currentCardIndex--;
-            updateCardStates();
-            smoothScrollToCard(currentCardIndex);
+        if (e.key === 'ArrowDown' && currentSectionIndex < stickySections.length - 1) {
+            currentSectionIndex++;
+            updateSectionStates();
+            smoothScrollToSection(currentSectionIndex);
+        } else if (e.key === 'ArrowUp' && currentSectionIndex > 0) {
+            currentSectionIndex--;
+            updateSectionStates();
+            smoothScrollToSection(currentSectionIndex);
         }
     });
 
-    function smoothScrollToCard(index) {
-        const targetCard = projectCards[index];
-        if (targetCard) {
-            isScrolling = true;
-            targetCard.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
+    function smoothScrollToSection(index) {
+        const heroHeight = document.querySelector('.portfolio-hero').offsetHeight;
+        const targetScroll = heroHeight + (index * window.innerHeight);
 
-            setTimeout(() => {
-                isScrolling = false;
-            }, 1000);
+        isScrolling = true;
+        window.scrollTo({
+            top: targetScroll,
+            behavior: 'smooth'
+        });
+
+        setTimeout(() => {
+            isScrolling = false;
+        }, isMobile ? 1200 : 1000); // Більший timeout для мобільних
+    }
+}
+
+// Мобільні оптимізації
+function initMobileOptimizations() {
+    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
+    if (isMobile) {
+        // Відключаємо zoom на double tap
+        let lastTouchEnd = 0;
+        document.addEventListener('touchend', (event) => {
+            const now = (new Date()).getTime();
+            if (now - lastTouchEnd <= 300) {
+                event.preventDefault();
+            }
+            lastTouchEnd = now;
+        }, false);
+
+        // Оптимізація для iOS Safari
+        if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+            // Виправлення для iPhone з вирізами
+            const meta = document.querySelector('meta[name="viewport"]');
+            if (meta) {
+                meta.setAttribute('content', 'width=device-width, initial-scale=1, viewport-fit=cover');
+            }
+
+            // Додаткові iOS специфічні оптимізації
+            document.documentElement.style.setProperty('--vh', `${window.innerHeight * 0.01}px`);
         }
     }
 }
@@ -216,15 +248,21 @@ function closeAllModals() {
 // Viewport height для iOS Safari
 function initViewportHeight() {
     function setVH() {
-                const vh = window.innerHeight * 0.01;
-                document.documentElement.style.setProperty('--vh', `${vh}px`);
+        const vh = window.innerHeight * 0.01;
+        document.documentElement.style.setProperty('--vh', `${vh}px`);
     }
 
-            setVH();
-            window.addEventListener('resize', setVH);
-            window.addEventListener('orientationchange', () => {
+    setVH();
+    window.addEventListener('resize', setVH);
+    window.addEventListener('orientationchange', () => {
         setTimeout(setVH, 100);
     });
+
+    // Додаткові обробники для мобільних
+    if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
+        window.addEventListener('scroll', setVH);
+        window.addEventListener('focus', setVH);
+    }
 }
 
 // Intersection Observer для оптимізації відео

@@ -585,7 +585,7 @@ body {
     background: var(--color-black);
     color: var(--color-white);
     padding: var(--space-xl) 0 var(--space-sm);
-    margin-top: var(--space-xl);
+    
 }
 
 .footer-content {

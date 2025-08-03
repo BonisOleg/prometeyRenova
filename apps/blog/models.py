@@ -31,3 +31,9 @@ class BlogPost(models.Model):
     
     def get_absolute_url(self):
         return reverse('blog_detail', kwargs={'slug': self.slug})
+    
+    def get_keywords_list(self):
+        """Повертає список ключових слів"""
+        if self.keywords:
+            return [keyword.strip() for keyword in self.keywords.split(',')]
+        return []

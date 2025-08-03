@@ -1,6 +1,5 @@
 {% extends 'base.html' %}
 {% load static %}
-{% load custom_filters %}
 
 {% block title %}{{ page_title }}{% endblock %}
 {% block description %}{{ meta_description }}{% endblock %}
@@ -52,10 +51,8 @@
                     <p class="text-base mb-sm article-excerpt">{{ post.excerpt }}</p>
 
                     <div class="article-keywords">
-                        {% for keyword in post.keywords|split:"," %}
-                        {% if keyword.strip %}
-                        <span class="keyword-tag">{{ keyword.strip }}</span>
-                        {% endif %}
+                        {% for keyword in post.get_keywords_list %}
+                        <span class="keyword-tag">{{ keyword }}</span>
                         {% endfor %}
                     </div>
                 </div>

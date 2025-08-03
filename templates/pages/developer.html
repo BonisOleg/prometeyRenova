@@ -9,6 +9,32 @@
 {% endblock %}
 
 {% block content %}
+<!-- Developer Hero з фоновим відео -->
+<section class="developer-hero full-height">
+    <!-- Фонові відео для декстопу та мобільних -->
+    <video class="video-background desktop-video" autoplay muted loop playsinline>
+        <source src="{% static 'videos/desktop/study.mp4' %}" type="video/mp4">
+    </video>
+    <video class="video-background mobile-video" autoplay muted loop playsinline>
+        <source src="{% static 'videos/mobile/studymobile.mp4' %}" type="video/mp4">
+    </video>
+
+    <!-- Overlay для кращої читабельності -->
+    <div class="video-overlay"></div>
+
+    <div class="hero-content">
+        <div class="container">
+            <div class="hero-text text-center">
+                <h1 class="text-mega color-red mb-lg">СТАТИ РОЗРОБНИКОМ</h1>
+                <p class="text-large color-white">
+                    Мрієте стати веб-розробником? Наші курси програмування - це ваш шлях
+                    до успішної кар'єри в IT.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
 <!-- Dark Split Section 50/50 згідно STYLE.MDC -->
 <section class="dark-split-section full-height">
     <div class="split-container">

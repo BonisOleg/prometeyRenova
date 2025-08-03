@@ -11,6 +11,32 @@
 {% endblock %}
 
 {% block content %}
+<!-- Blog Hero з фоновим відео -->
+<section class="blog-hero full-height">
+    <!-- Фонові відео для декстопу та мобільних -->
+    <video class="video-background desktop-video" autoplay muted loop playsinline>
+        <source src="{% static 'videos/desktop/blog.mp4' %}" type="video/mp4">
+    </video>
+    <video class="video-background mobile-video" autoplay muted loop playsinline>
+        <source src="{% static 'videos/mobile/blogmobile.mp4' %}" type="video/mp4">
+    </video>
+
+    <!-- Overlay для кращої читабельності -->
+    <div class="video-overlay"></div>
+
+    <div class="hero-content">
+        <div class="container">
+            <div class="hero-text text-center">
+                <h1 class="text-mega color-red mb-lg">БЛОГ</h1>
+                <p class="text-large color-white">
+                    Корисні статті про веб-розробку, курси програмування,
+                    створення сайтів під ключ та Telegram ботів
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
 <!-- Blog Header -->
 <section class="blog-header">
     <div class="container">

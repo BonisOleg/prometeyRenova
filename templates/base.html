@@ -29,6 +29,7 @@
     <!-- CSS -->
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    {% block page_css %}{% endblock %}
     {% block extra_css %}{% endblock %}
 
     <!-- Preconnect for performance -->

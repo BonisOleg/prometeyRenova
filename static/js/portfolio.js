@@ -8,7 +8,88 @@ document.addEventListener('DOMContentLoaded', function () {
     initModalSystem();
     initViewportHeight();
     initMobileOptimizations();
+    initMobileVisibilityGuarantee(); // НОВА ФУНКЦІЯ
+
+    // Додаткова перевірка після завантаження
+    setTimeout(checkAndFixVisibility, 500);
+    setTimeout(checkAndFixVisibility, 1000);
+    setTimeout(checkAndFixVisibility, 2000);
 });
+
+// НОВА ФУНКЦІЯ: Перевірка та виправлення видимості
+function checkAndFixVisibility() {
+    const isMobile = window.innerWidth <= 768; // Змінено з 767 на 768
+
+    if (isMobile) {
+        const stickySections = document.querySelectorAll('.sticky-section');
+        const portfolioProjects = document.querySelector('.portfolio-projects');
+
+        console.log('Checking visibility for mobile device...');
+        console.log('Found sticky sections:', stickySections.length);
+
+        // Перевіряємо та виправляємо секцію portfolio-projects
+        if (portfolioProjects) {
+            portfolioProjects.style.display = 'block';
+            portfolioProjects.style.visibility = 'visible';
+            portfolioProjects.style.opacity = '1';
+            console.log('Fixed portfolio-projects visibility');
+        }
+
+        // Перевіряємо та виправляємо кожну sticky секцію
+        stickySections.forEach((section, index) => {
+            const computedStyle = window.getComputedStyle(section);
+
+            // Перевіряємо чи секція видима
+            if (computedStyle.display === 'none' ||
+                computedStyle.visibility === 'hidden' ||
+                parseFloat(computedStyle.opacity) === 0) {
+
+                console.log(`Fixing visibility for section ${index + 1}`);
+
+                // Примусово встановлюємо видимість
+                section.style.display = 'block';
+                section.style.visibility = 'visible';
+                section.style.opacity = '1';
+                section.style.position = 'sticky';
+                section.style.top = '0';
+                section.style.height = '100vh';
+                section.style.minHeight = '100vh';
+                section.style.background = '#000';
+
+                // Виправляємо відео в секції
+                const videos = section.querySelectorAll('.project-video');
+                videos.forEach(video => {
+                    video.style.display = 'block';
+                    video.style.visibility = 'visible';
+                    video.style.opacity = '1';
+                });
+
+                // Правильне відображення responsive відео
+                const desktopVideos = section.querySelectorAll('.desktop-video');
+                const mobileVideos = section.querySelectorAll('.mobile-video');
+
+                desktopVideos.forEach(video => {
+                    video.style.display = 'none';
+                });
+
+                mobileVideos.forEach(video => {
+                    video.style.display = 'block';
+                });
+
+                // Виправляємо кнопки
+                const buttons = section.querySelectorAll('.btn-primary');
+                buttons.forEach(button => {
+                    button.style.display = 'inline-flex';
+                    button.style.visibility = 'visible';
+                    button.style.opacity = '1';
+                    button.style.zIndex = '4';
+                });
+            }
+        });
+
+        console.log('Visibility check completed');
+    }
+}
 
 // Система фонових відео для портфоліо
 function initVideoSystem() {
@@ -59,6 +140,63 @@ function optimizeVideosForMobile() {
             }
         });
     });
+}
+
+// НОВА ФУНКЦІЯ: Гарантія видимості для мобільних пристроїв
+function initMobileVisibilityGuarantee() {
+    const isMobile = window.innerWidth <= 768; // Змінено з 767 на 768
+
+    if (isMobile) {
+        const stickySections = document.querySelectorAll('.sticky-section');
+
+        // Гарантуємо що всі секції видимі на мобільних
+        stickySections.forEach((section, index) => {
+            // Примусово встановлюємо видимість
+            section.style.display = 'block';
+            section.style.visibility = 'visible';
+            section.style.opacity = '1';
+            section.style.position = 'sticky';
+            section.style.top = '0';
+            section.style.height = '100vh';
+            section.style.minHeight = '100vh';
+
+            // Гарантуємо що відео видимі
+            const videos = section.querySelectorAll('.project-video');
+            videos.forEach(video => {
+                video.style.display = 'block';
+                video.style.visibility = 'visible';
+                video.style.opacity = '1';
+            });
+
+            // Правильне відображення responsive відео
+            const desktopVideos = section.querySelectorAll('.desktop-video');
+            const mobileVideos = section.querySelectorAll('.mobile-video');
+
+            desktopVideos.forEach(video => {
+                video.style.display = 'none';
+            });
+
+            mobileVideos.forEach(video => {
+                video.style.display = 'block';
+            });
+        });
+
+        // Додатковий обробник для resize
+        window.addEventListener('resize', () => {
+            if (window.innerWidth <= 768) { // Змінено з 767 на 768
+                stickySections.forEach(section => {
+                    section.style.display = 'block';
+                    section.style.visibility = 'visible';
+                    section.style.opacity = '1';
+                });
+
+                // Додаткова перевірка при resize
+                setTimeout(checkAndFixVisibility, 100);
+            }
+        });
+
+        console.log('Mobile visibility guarantee applied for', stickySections.length, 'sections');
+    }
 }
 
 // Навігація з прозорим хедером
@@ -132,6 +270,13 @@ function initStickyScrollEffect() {
                 section.classList.add('passed');
             } else {
                 section.classList.add('pending');
+            }
+
+            // Додаткова гарантія для мобільних
+            if (window.innerWidth <= 768) { // Змінено з 767 на 768
+                section.style.display = 'block';
+                section.style.visibility = 'visible';
+                section.style.opacity = '1';
             }
         });
     }

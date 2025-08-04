@@ -5,13 +5,10 @@
 {% block description %}{{ meta_description }}{% endblock %}
 
 {% block extra_head %}
-<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-<meta http-equiv="Pragma" content="no-cache">
-<meta http-equiv="Expires" content="0">
 {% endblock %}
 
 {% block page_css %}
-<link rel="stylesheet" href="{% static 'css/portfolio.css' %}?v=3.1">
+<link rel="stylesheet" href="{% static 'css/portfolio.css' %}">
 {% endblock %}
 
 {% block content %}
@@ -43,87 +40,111 @@
 </section>
 
 <!-- Portfolio Projects - Sticky Scroll Effect -->
-<section class="portfolio-projects">
+<section class="portfolio-projects" style="display: block; visibility: visible; opacity: 1;">
     <!-- PROJECT 01 - Prometey Labs -->
-    <div class="project-card sticky-section" data-project="1" style="z-index: 1;">
-        <video class="project-video desktop-video" autoplay muted loop playsinline>
+    <div class="project-card sticky-section" data-project="1"
+        style="z-index: 1; display: block; visibility: visible; opacity: 1; position: sticky; top: 0; height: 100vh; min-height: 100vh; background: #000;">
+        <video class="project-video desktop-video" autoplay muted loop playsinline
+            style="display: block; visibility: visible; opacity: 1;">
             <source src="{% static 'videos/projects/desktop/prometeylabs.mp4' %}" type="video/mp4">
         </video>
-        <video class="project-video mobile-video" autoplay muted loop playsinline>
+        <video class="project-video mobile-video" autoplay muted loop playsinline
+            style="display: block; visibility: visible; opacity: 1;">
             <source src="{% static 'videos/projects/mobile/prometeylabs_mb.mp4' %}" type="video/mp4">
         </video>
 
-        <button class="btn btn-primary" data-modal="site-request-modal">
+        <button class="btn btn-primary" data-modal="site-request-modal"
+            style="display: inline-flex; visibility: visible; opacity: 1; z-index: 4;">
             Замовити подібний
         </button>
     </div>
 
     <!-- PROJECT 02 - Frame Journey -->
-    <div class="project-card sticky-section" data-project="2" style="z-index: 2;">
-        <video class="project-video desktop-video" autoplay muted loop playsinline>
+    <div class="project-card sticky-section" data-project="2"
+        style="z-index: 2; display: block; visibility: visible; opacity: 1; position: sticky; top: 0; height: 100vh; min-height: 100vh; background: #000;">
+        <video class="project-video desktop-video" autoplay muted loop playsinline
+            style="display: block; visibility: visible; opacity: 1;">
             <source src="{% static 'videos/projects/desktop/framejorney.mp4' %}" type="video/mp4">
         </video>
-        <video class="project-video mobile-video" autoplay muted loop playsinline>
+        <video class="project-video mobile-video" autoplay muted loop playsinline
+            style="display: block; visibility: visible; opacity: 1;">
             <source src="{% static 'videos/projects/mobile/framejorney_mb.mp4' %}" type="video/mp4">
         </video>
 
-        <button class="btn btn-primary" data-modal="site-request-modal">
+        <button class="btn btn-primary" data-modal="site-request-modal"
+            style="display: inline-flex; visibility: visible; opacity: 1; z-index: 4;">
             Замовити подібний
         </button>
     </div>
 
     <!-- PROJECT 03 - Do It -->
-    <div class="project-card sticky-section" data-project="3" style="z-index: 3;">
-        <video class="project-video desktop-video" autoplay muted loop playsinline>
+    <div class="project-card sticky-section" data-project="3"
+        style="z-index: 3; display: block; visibility: visible; opacity: 1; position: sticky; top: 0; height: 100vh; min-height: 100vh; background: #000;">
+        <video class="project-video desktop-video" autoplay muted loop playsinline
+            style="display: block; visibility: visible; opacity: 1;">
             <source src="{% static 'videos/projects/desktop/douit.mp4' %}" type="video/mp4">
         </video>
-        <video class="project-video mobile-video" autoplay muted loop playsinline>
+        <video class="project-video mobile-video" autoplay muted loop playsinline
+            style="display: block; visibility: visible; opacity: 1;">
             <source src="{% static 'videos/projects/mobile/douit_mb.mp4' %}" type="video/mp4">
         </video>
 
-        <button class="btn btn-primary" data-modal="site-request-modal">
+        <button class="btn btn-primary" data-modal="site-request-modal"
+            style="display: inline-flex; visibility: visible; opacity: 1; z-index: 4;">
             Замовити подібний
         </button>
     </div>
 
     <!-- PROJECT 04 - Pulvas -->
-    <div class="project-card sticky-section" data-project="4" style="z-index: 4;">
-        <video class="project-video desktop-video" autoplay muted loop playsinline>
+    <div class="project-card sticky-section" data-project="4"
+        style="z-index: 4; display: block; visibility: visible; opacity: 1; position: sticky; top: 0; height: 100vh; min-height: 100vh; background: #000;">
+        <video class="project-video desktop-video" autoplay muted loop playsinline
+            style="display: block; visibility: visible; opacity: 1;">
             <source src="{% static 'videos/projects/desktop/pulvas.mp4' %}" type="video/mp4">
         </video>
-        <video class="project-video mobile-video" autoplay muted loop playsinline>
+        <video class="project-video mobile-video" autoplay muted loop playsinline
+            style="display: block; visibility: visible; opacity: 1;">
             <source src="{% static 'videos/projects/mobile/pulvasshop_mb.mp4' %}" type="video/mp4">
         </video>
 
-        <button class="btn btn-primary" data-modal="site-request-modal">
+        <button class="btn btn-primary" data-modal="site-request-modal"
+            style="display: inline-flex; visibility: visible; opacity: 1; z-index: 4;">
             Замовити подібний
         </button>
     </div>
 
     <!-- PROJECT 05 - Guide -->
-    <div class="project-card sticky-section" data-project="5" style="z-index: 5;">
-        <video class="project-video desktop-video" autoplay muted loop playsinline>
+    <div class="project-card sticky-section" data-project="5"
+        style="z-index: 5; display: block; visibility: visible; opacity: 1; position: sticky; top: 0; height: 100vh; min-height: 100vh; background: #000;">
+        <video class="project-video desktop-video" autoplay muted loop playsinline
+            style="display: block; visibility: visible; opacity: 1;">
             <source src="{% static 'videos/projects/desktop/guide.mp4' %}" type="video/mp4">
         </video>
-        <video class="project-video mobile-video" autoplay muted loop playsinline>
+        <video class="project-video mobile-video" autoplay muted loop playsinline
+            style="display: block; visibility: visible; opacity: 1;">
             <source src="{% static 'videos/projects/mobile/guidewhitenergy_mb.mp4' %}" type="video/mp4">
         </video>
 
-        <button class="btn btn-primary" data-modal="site-request-modal">
+        <button class="btn btn-primary" data-modal="site-request-modal"
+            style="display: inline-flex; visibility: visible; opacity: 1; z-index: 4;">
             Замовити подібний
         </button>
     </div>
 
     <!-- PROJECT 06 - Polygraph -->
-    <div class="project-card sticky-section" data-project="6" style="z-index: 6;">
-        <video class="project-video desktop-video" autoplay muted loop playsinline>
+    <div class="project-card sticky-section" data-project="6"
+        style="z-index: 6; display: block; visibility: visible; opacity: 1; position: sticky; top: 0; height: 100vh; min-height: 100vh; background: #000;">
+        <video class="project-video desktop-video" autoplay muted loop playsinline
+            style="display: block; visibility: visible; opacity: 1;">
             <source src="{% static 'videos/projects/desktop/polygraph.mp4' %}" type="video/mp4">
         </video>
-        <video class="project-video mobile-video" autoplay muted loop playsinline>
+        <video class="project-video mobile-video" autoplay muted loop playsinline
+            style="display: block; visibility: visible; opacity: 1;">
             <source src="{% static 'videos/projects/mobile/polygraph_mb.mp4' %}" type="video/mp4">
         </video>
 
-        <button class="btn btn-primary" data-modal="site-request-modal">
+        <button class="btn btn-primary" data-modal="site-request-modal"
+            style="display: inline-flex; visibility: visible; opacity: 1; z-index: 4;">
             Замовити подібний
         </button>
     </div>
@@ -131,5 +152,5 @@
 {% endblock %}
 
 {% block extra_js %}
-<script src="{% static 'js/portfolio.js' %}?v=3.0"></script>
+<script src="{% static 'js/portfolio.js' %}"></script>
 {% endblock %}

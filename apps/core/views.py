@@ -87,6 +87,8 @@ class ContactsView(TemplateView):
         })
         return context
 
+
+
 # ===== AJAX ОБРОБКА ФОРМ =====
 
 def handle_form_submission(request):

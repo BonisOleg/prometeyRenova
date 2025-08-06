@@ -24,19 +24,6 @@
     z-index: 1;
 }
 
-/* Responsive відео для hero */
-@media (min-width: 768px) {
-    .mobile-video {
-        display: none;
-    }
-}
-
-@media (max-width: 767px) {
-    .desktop-video {
-        display: none;
-    }
-}
-
 /* Overlay для читабельності */
 .video-overlay {
     position: absolute;
@@ -82,10 +69,13 @@
 .portfolio-projects {
     position: relative;
     background: #000;
+    display: block;
+    visibility: visible;
+    opacity: 1;
 }
 
 /* Sticky секції для кожного проекту */
-.sticky-section {
+.portfolio-projects .sticky-section {
     position: sticky;
     top: 0;
     height: 100vh;
@@ -96,10 +86,15 @@
     justify-content: center;
     overflow: hidden;
     background: #000;
+    opacity: 1;
+    visibility: visible;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    perspective: 1000px;
 }
 
 /* Фонові відео для проектів */
-.project-video {
+.portfolio-projects .project-video {
     position: absolute;
     top: 0;
     left: 0;
@@ -107,63 +102,91 @@
     height: 100%;
     object-fit: cover;
     z-index: 1;
+    opacity: 1;
+    visibility: visible;
+    transform: translateZ(0);
+    will-change: opacity;
 }
 
-/* Responsive відео для проектів */
-@media (min-width: 768px) {
-    .sticky-section .mobile-video {
-        display: none;
-    }
-}
-
-@media (max-width: 767px) {
-    .sticky-section .desktop-video {
-        display: none;
-    }
-}
-
-/* ===== КНОПКА ПОЗИЦІОНУВАННЯ ===== */
-.sticky-section .btn-primary {
+/* Кнопка позиціонування */
+.portfolio-projects .sticky-section .btn-primary {
     position: absolute;
     top: 60px;
     left: 60px;
     z-index: 4;
+    opacity: 1;
+    visibility: visible;
 }
 
 /* ===== STICKY SCROLL STATES ===== */
 
 /* Активна секція (поточна) */
-.sticky-section.active {
+.portfolio-projects .sticky-section.active {
     z-index: 50;
 }
 
 /* Секція що зникає (йде вгору) */
-.sticky-section.exiting {
+.portfolio-projects .sticky-section.exiting {
     z-index: 60;
     transform: translateY(-100vh);
 }
 
 /* Секція що входить (знизу) */
-.sticky-section.entering {
+.portfolio-projects .sticky-section.entering {
     z-index: 40;
     transform: translateY(100vh);
 }
 
 /* Секції що чекають знизу */
-.sticky-section.pending {
+.portfolio-projects .sticky-section.pending {
     z-index: 30;
     transform: translateY(20px);
 }
 
 /* Секції що вже пройшли */
-.sticky-section.passed {
+.portfolio-projects .sticky-section.passed {
     z-index: 20;
     transform: translateY(-20px);
     opacity: 0.8;
 }
 
+/* ===== RESPONSIVE ВІДЕО ===== */
+
+/* Десктоп відео */
+@media (min-width: 768px) {
+    .mobile-video {
+        display: none;
+    }
+
+    .desktop-video {
+        display: block;
+        object-fit: contain;
+        background: #000;
+    }
+}
+
+/* Мобільні відео */
+@media (max-width: 767px) {
+    .desktop-video {
+        display: none;
+    }
+
+    .mobile-video {
+        display: block;
+        object-fit: cover;
+    }
+
+    .portfolio-projects .sticky-section .desktop-video {
+        display: none;
+    }
+
+    .portfolio-projects .sticky-section .mobile-video {
+        display: block;
+    }
+}
+
 /* ===== АДАПТАЦІЯ ПЛАНШЕТИ ===== */
-@media (max-width: 1024px) {
+@media (max-width: 1024px) and (min-width: 768px) {
     .portfolio-hero {
         min-height: 80vh;
         padding: var(--space-md) 0;
@@ -177,13 +200,13 @@
         padding: var(--space-md) 0;
     }
 
-    .sticky-section .btn-primary {
+    .portfolio-projects .sticky-section .btn-primary {
         top: 40px;
         left: 40px;
     }
 }
 
-/* ===== АДАПТАЦІЯ МОБІЛЬНІ (iOS Safari) - ВИПРАВЛЕНО ===== */
+/* ===== АДАПТАЦІЯ МОБІЛЬНІ (iOS Safari) ===== */
 @media (max-width: 767px) {
     .portfolio-hero {
         min-height: 100vh;
@@ -204,8 +227,8 @@
         font-size: var(--font-medium);
     }
 
-    /* ВИПРАВЛЕННЯ: Зберігаємо sticky поведінку для мобільних */
-    .sticky-section {
+    /* Мобільні sticky секції */
+    .portfolio-projects .sticky-section {
         position: sticky;
         top: 0;
         height: 100vh;
@@ -219,86 +242,110 @@
         justify-content: center;
         overflow: hidden;
         background: #000;
-        /* iOS Safari оптимізації */
         -webkit-overflow-scrolling: touch;
         transform: translateZ(0);
         will-change: transform;
-        /* Важливо: зберігаємо видимість */
         opacity: 1;
         visibility: visible;
     }
 
-    /* ВИПРАВЛЕННЯ: Зберігаємо всі стани для мобільних */
-    .sticky-section.active {
+    /* Мобільні sticky states */
+    .portfolio-projects .sticky-section.active {
         z-index: 50;
         opacity: 1;
         visibility: visible;
     }
 
-    .sticky-section.exiting {
+    .portfolio-projects .sticky-section.exiting {
         z-index: 60;
         transform: translateY(-100vh) translateZ(0);
         opacity: 1;
         visibility: visible;
     }
 
-    .sticky-section.entering {
+    .portfolio-projects .sticky-section.entering {
         z-index: 40;
         transform: translateY(100vh) translateZ(0);
         opacity: 1;
         visibility: visible;
     }
 
-    .sticky-section.pending {
+    .portfolio-projects .sticky-section.pending {
         z-index: 30;
         transform: translateY(10px) translateZ(0);
         opacity: 1;
         visibility: visible;
     }
 
-    .sticky-section.passed {
+    .portfolio-projects .sticky-section.passed {
         z-index: 20;
         transform: translateY(-10px) translateZ(0);
         opacity: 0.8;
         visibility: visible;
     }
 
-    .sticky-section .btn-primary {
-        top: 30px;
+    .portfolio-projects .sticky-section .btn-primary {
+        top: 63px;
         left: 20px;
         font-size: 14px;
         padding: 12px 20px;
-        /* Touch оптимізація */
         -webkit-tap-highlight-color: transparent;
         touch-action: manipulation;
     }
 
-    /* ВИПРАВЛЕННЯ: Гарантуємо що відео завжди видимі */
-    .project-video {
+    /* Мобільні відео */
+    .portfolio-projects .project-video {
         position: absolute;
         top: 0;
         left: 0;
         width: 100%;
-        height: 100%;
-        object-fit: cover;
+        height: 90%;
+        object-fit: fill;
         z-index: 1;
         opacity: 1;
         visibility: visible;
     }
+}
 
-    /* ВИПРАВЛЕННЯ: Правильне відображення responsive відео */
-    .sticky-section .desktop-video {
-        display: none;
+/* ===== iOS SAFARI СПЕЦИФІКА ===== */
+@supports (-webkit-touch-callout: none) {
+
+    .portfolio-hero,
+    .portfolio-projects .sticky-section {
+        height: 100vh;
+        max-height: 100vh;
+        height: -webkit-fill-available;
+        max-height: -webkit-fill-available;
     }
 
-    .sticky-section .mobile-video {
-        display: block;
+    .portfolio-projects .project-video,
+    .video-background {
+        -webkit-transform: translateZ(0);
+    }
+
+    .portfolio-projects .sticky-section {
+        -webkit-overflow-scrolling: touch;
+        -webkit-transform: translateZ(0);
+        will-change: transform;
+    }
+
+    .portfolio-projects .sticky-section .btn-primary {
+        -webkit-tap-highlight-color: transparent;
+        touch-action: manipulation;
+    }
+
+    /* iPhone safe areas */
+    @supports (padding: max(0px)) {
+        .portfolio-projects .sticky-section .btn-primary {
+            top: max(30px, env(safe-area-inset-top) + 10px);
+            left: max(20px, env(safe-area-inset-left) + 10px);
+        }
     }
 }
 
 /* ===== АНІМАЦІЇ ===== */
 @media (prefers-reduced-motion: no-preference) {
-    .sticky-section {
+    .portfolio-projects .sticky-section {
         transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     }
 
@@ -312,191 +359,10 @@
     }
 }
 
-/* ===== PERFORMANCE OPTIMIZATIONS ===== */
-.sticky-section {
-    transform: translateZ(0);
-    backface-visibility: hidden;
-    perspective: 1000px;
-}
-
-.project-video {
-    transform: translateZ(0);
-    will-change: opacity;
-}
-
-/* ===== iOS SAFARI СПЕЦИФІКА ===== */
-@supports (-webkit-touch-callout: none) {
-
-    .portfolio-hero,
-    .sticky-section {
-        height: 100vh;
-        max-height: 100vh;
-        height: -webkit-fill-available;
-        max-height: -webkit-fill-available;
-    }
-
-    .project-video,
-    .video-background {
-        -webkit-transform: translateZ(0);
-    }
-
-    /* Додаткові iOS оптимізації */
-    .sticky-section {
-        -webkit-overflow-scrolling: touch;
-        -webkit-transform: translateZ(0);
-        will-change: transform;
-    }
-
-    .sticky-section .btn-primary {
-        -webkit-tap-highlight-color: transparent;
-        touch-action: manipulation;
-    }
-
-    /* Виправлення для iPhone з вирізами */
-    @supports (padding: max(0px)) {
-        .sticky-section .btn-primary {
-            top: max(30px, env(safe-area-inset-top) + 10px);
-            left: max(20px, env(safe-area-inset-left) + 10px);
-        }
-    }
-}
-
 /* ===== HOVER ЕФЕКТИ (тільки для декстопу) ===== */
 @media (hover: hover) {
-    .sticky-section .btn-primary:hover {
+    .portfolio-projects .sticky-section .btn-primary:hover {
         transform: translateY(-2px);
         box-shadow: 0 8px 25px rgba(220, 20, 60, 0.4);
-    }
-}
-
-/* ===== ДОДАТКОВІ ГАРАНТІЇ ВИДИМОСТІ ДЛЯ МОБІЛЬНИХ ===== */
-@media (max-width: 767px) {
-
-    /* Примусова гарантія видимості для всіх секцій */
-    .portfolio-projects {
-        display: block;
-        visibility: visible;
-        opacity: 1;
-    }
-
-    .portfolio-projects .sticky-section {
-        display: block !important;
-        visibility: visible !important;
-        opacity: 1 !important;
-        position: sticky !important;
-        top: 0 !important;
-        height: 100vh !important;
-        max-height: 100vh !important;
-        min-height: 100vh !important;
-        background: #000 !important;
-    }
-
-    /* Гарантія видимості для всіх відео */
-    .portfolio-projects .project-video {
-        display: block !important;
-        visibility: visible !important;
-        opacity: 1 !important;
-        position: absolute !important;
-        top: 0 !important;
-        left: 0 !important;
-        width: 100% !important;
-        height: 100% !important;
-        object-fit: cover !important;
-        z-index: 1 !important;
-    }
-
-    /* Правильне відображення responsive відео на мобільних */
-    .portfolio-projects .sticky-section .desktop-video {
-        display: none !important;
-    }
-
-    .portfolio-projects .sticky-section .mobile-video {
-        display: block !important;
-    }
-
-    /* Гарантія що кнопки видимі */
-    .portfolio-projects .sticky-section .btn-primary {
-        display: inline-flex !important;
-        visibility: visible !important;
-        opacity: 1 !important;
-        z-index: 4 !important;
-    }
-}
-
-/* ===== ДОДАТКОВІ ФІКСИ ДЛЯ iOS SAFARI ===== */
-@supports (-webkit-touch-callout: none) and (max-width: 767px) {
-    .portfolio-projects .sticky-section {
-        height: 100vh !important;
-        max-height: 100vh !important;
-        height: -webkit-fill-available !important;
-        max-height: -webkit-fill-available !important;
-        min-height: 100vh !important;
-        min-height: -webkit-fill-available !important;
-        -webkit-overflow-scrolling: touch !important;
-        -webkit-transform: translateZ(0) !important;
-    }
-
-    .portfolio-projects .project-video {
-        -webkit-transform: translateZ(0) !important;
-        -webkit-object-fit: cover !important;
-    }
-}
-
-/* ===== ДОДАТКОВІ ГАРАНТІЇ ДЛЯ МЕДІА-ЗАПИТУ ВІД 768PX ===== */
-@media (max-width: 768px) {
-
-    /* Додаткова гарантія для всіх пристроїв від 768px і нижче */
-    .portfolio-projects {
-        display: block !important;
-        visibility: visible !important;
-        opacity: 1 !important;
-        position: relative !important;
-        background: #000 !important;
-    }
-
-    .portfolio-projects .sticky-section {
-        display: block !important;
-        visibility: visible !important;
-        opacity: 1 !important;
-        position: sticky !important;
-        top: 0 !important;
-        height: 100vh !important;
-        max-height: 100vh !important;
-        min-height: 100vh !important;
-        background: #000 !important;
-        overflow: hidden !important;
-    }
-
-    .portfolio-projects .project-video {
-        display: block !important;
-        visibility: visible !important;
-        opacity: 1 !important;
-        position: absolute !important;
-        top: 0 !important;
-        left: 0 !important;
-        width: 100% !important;
-        height: 90% !important;
-        object-fit: fill !important;
-        z-index: 1 !important;
-    }
-
-    /* Правильне відображення responsive відео */
-    .portfolio-projects .sticky-section .desktop-video {
-        display: none !important;
-    }
-
-    .portfolio-projects .sticky-section .mobile-video {
-        display: block !important;
-    }
-
-    /* Гарантія що кнопки видимі */
-    .portfolio-projects .sticky-section .btn-primary {
-        display: inline-flex !important;
-        visibility: visible !important;
-        opacity: 1 !important;
-        z-index: 4 !important;
-        position: absolute !important;
-        top: 30px !important;
-        left: 20px !important;
     }
 }

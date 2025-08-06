@@ -198,9 +198,9 @@ body {
 }
 
 .nav-link {
-    font-size: var(--font-small);
-    font-weight: 500;
-    color: var(--color-black);
+    font-size: var(--font-base);
+    font-weight: 700;
+    color: #666666;
     text-decoration: none;
     transition: color 0.3s ease-out;
     position: relative;
@@ -250,7 +250,7 @@ body {
 .burger-line {
     width: 25px;
     height: 2px;
-    background: var(--color-black);
+    background: var(--color-red);
     margin: 3px 0;
     transition: all 0.3s ease-out;
     transform-origin: center;
@@ -585,7 +585,7 @@ body {
     background: var(--color-black);
     color: var(--color-white);
     padding: var(--space-xl) 0 var(--space-sm);
-    
+
 }
 
 .footer-content {

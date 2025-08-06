@@ -11,6 +11,29 @@
 
 .calculator-info h2 {
     margin-bottom: var(--space-lg);
+    position: relative;
+    display: inline-block;
+}
+
+.calculator-info h2::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    background: var(--color-red);
+}
+
+.info-content {
+    position: relative;
+}
+
+.info-content p {
+    position: relative;
+    padding-left: 20px;
+    border-left: 2px solid var(--color-red);
+    margin-bottom: var(--space-md);
 }
 
 /* Декоративні елементи */
@@ -38,20 +61,49 @@
 .benefits-list {
     list-style: none;
     padding: 0;
+    margin-top: var(--space-md);
 }
 
 .benefits-list li {
     position: relative;
-    padding-left: var(--space-xs);
-    margin-bottom: 8px;
+    padding: 12px 0 12px 40px;
+    margin-bottom: 12px;
+    background: var(--color-white);
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(220, 20, 60, 0.1);
+    transition: all 0.3s ease-out;
+}
+
+.benefits-list li:hover {
+    transform: translateX(5px);
+    box-shadow: 0 4px 12px rgba(220, 20, 60, 0.2);
 }
 
 .benefits-list li::before {
-    content: '✓';
+    content: '⚡';
     position: absolute;
-    left: 0;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
     color: var(--color-red);
     font-weight: 700;
+    font-size: 16px;
+}
+
+.benefits-list li:nth-child(2)::before {
+    content: '🔧';
+}
+
+.benefits-list li:nth-child(3)::before {
+    content: '🤖';
+}
+
+.benefits-list li:nth-child(4)::before {
+    content: '✅';
+}
+
+.benefits-list li:nth-child(5)::before {
+    content: '🚀';
 }
 
 .test-section {
@@ -118,6 +170,13 @@
     position: relative;
 }
 
+/* Десктопна версія - додаємо margin тільки на великих екранах */
+@media (min-width: 768px) {
+    .cta-sidebar .cta-box {
+        margin-right: 40px;
+    }
+}
+
 .cta-sidebar .cta-box::before {
     content: '●';
     position: absolute;
@@ -155,5 +214,19 @@
         font-size: 18px;
         top: var(--space-xs);
         right: var(--space-xs);
+    }
+
+    .benefits-list li {
+        padding: 10px 0 10px 35px;
+        margin-bottom: 10px;
+    }
+
+    .benefits-list li::before {
+        font-size: 14px;
+        left: 10px;
+    }
+
+    .info-content p {
+        padding-left: 15px;
     }
 }

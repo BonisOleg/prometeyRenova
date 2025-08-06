@@ -114,6 +114,58 @@
     margin-bottom: var(--space-sm);
 }
 
+/* ===== ДЕСКТОПНА ОПТИМІЗАЦІЯ ===== */
+@media (min-width: 1025px) {
+    .split-left {
+        padding: var(--space-md);
+        align-items: flex-start;
+        padding-top: var(--space-lg);
+    }
+
+    .dark-content {
+        max-width: 450px;
+        width: 100%;
+        margin-top: -35px;
+    }
+
+    .dark-content h1 {
+        font-size: 60px;
+        margin-bottom: var(--space-sm);
+    }
+
+    .dark-content h2 {
+        font-size: 24px;
+        margin-bottom: var(--space-sm);
+    }
+
+    .features-list {
+        margin: var(--space-sm) 0;
+    }
+
+    .feature-item {
+        margin-bottom: var(--space-xs);
+        font-size: 14px;
+    }
+
+    .split-right .image-placeholder::after {
+        content: 'ЯКЩО РЕВОЛЮЦІЇ\AНЕ УНИКНУТИ -\AОЧОЛЬ ЇЇ';
+        font-size: 48px;
+        line-height: 1.1;
+        letter-spacing: -1px;
+        opacity: 0.9;
+        max-width: 100%;
+        word-wrap: normal;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        white-space: pre;
+        color: var(--color-red);
+        font-weight: 700;
+        text-align: center;
+    }
+}
+
 /* Права частина - фото */
 .split-right {
     background: var(--color-white);
@@ -143,15 +195,17 @@
 }
 
 .image-placeholder::after {
-    content: 'DEVELOPER\ACODE\ACREATE';
+    content: 'Якщо революції не уникнути - очоль її';
     white-space: pre;
     color: var(--color-red);
-    font-size: 48px;
+    font-size: 36px;
     font-weight: 700;
     text-align: center;
-    line-height: 1.2;
-    letter-spacing: -2px;
-    opacity: 0.8;
+    line-height: 1.3;
+    letter-spacing: -1px;
+    opacity: 0.9;
+    max-width: 90%;
+    word-wrap: break-word;
 }
 
 /* ===== COURSES SECTION ===== */
@@ -257,8 +311,23 @@
         max-width: 350px;
     }
 
-    .image-placeholder::after {
-        font-size: 36px;
+    .dark-content h1 {
+        font-size: 48px;
+        margin-bottom: var(--space-sm);
+    }
+
+    .dark-content h2 {
+        font-size: 20px;
+        margin-bottom: var(--space-sm);
+    }
+
+    .features-list {
+        margin: var(--space-sm) 0;
+    }
+
+    .split-right .image-placeholder::after {
+        font-size: 28px;
+        line-height: 1.2;
     }
 
     .stats-grid {
@@ -282,7 +351,7 @@
     }
 
     .hero-text h1 {
-        font-size: 60px;
+        font-size: 50px;
         margin-bottom: var(--space-md);
         text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
     }
@@ -301,7 +370,7 @@
 
     .split-container {
         grid-template-columns: 1fr;
-        grid-template-rows: 60% 40%;
+        grid-template-rows: 80% 20%;
         min-height: 100vh;
     }
 
@@ -319,9 +388,10 @@
         font-size: 20px;
     }
 
-    .image-placeholder::after {
-        font-size: 24px;
-        line-height: 1.1;
+    .split-right .image-placeholder::after {
+        font-size: 20px;
+        line-height: 1.2;
+        max-width: 95%;
     }
 
     .stats-grid {

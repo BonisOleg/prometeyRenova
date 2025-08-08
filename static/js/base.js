@@ -105,6 +105,30 @@ class PrometeyApp {
                 this.closeMobileMenu();
             }
         });
+
+        // Покращення для iOS Safari
+        if ('ontouchstart' in window) {
+            // Запобігання двойному тапу для зум
+            let lastTouchEnd = 0;
+            document.addEventListener('touchend', (e) => {
+                const now = (new Date()).getTime();
+                if (now - lastTouchEnd <= 300) {
+                    e.preventDefault();
+                }
+                lastTouchEnd = now;
+            }, false);
+
+            // Покращення для мобільного меню
+            mobileMenu.addEventListener('touchstart', (e) => {
+                e.stopPropagation();
+            }, { passive: true });
+
+            mobileLinks.forEach(link => {
+                link.addEventListener('touchstart', (e) => {
+                    e.stopPropagation();
+                }, { passive: true });
+            });
+        }
     }
 
     toggleMobileMenu() {
@@ -129,6 +153,14 @@ class PrometeyApp {
         burgerBtn.classList.remove('active');
         mobileMenu.classList.remove('active');
         body.style.overflow = '';
+        
+        // Скидання анімацій для iOS Safari
+        const mobileLinks = document.querySelectorAll('.mobile-nav-link');
+        mobileLinks.forEach(link => {
+            link.style.animation = 'none';
+            link.offsetHeight; // trigger reflow
+            link.style.animation = null;
+        });
     }
 
     // ===== МОДАЛЬНІ ВІКНА =====

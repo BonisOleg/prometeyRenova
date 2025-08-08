@@ -274,15 +274,18 @@ body {
     left: 0;
     width: 100%;
     height: 100vh;
+    height: 100dvh;
     background: var(--color-beige);
     z-index: 999;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: var(--space-sm);
+    justify-content: flex-start;
+    align-items: flex-start;
     transform: translateX(-100%);
     transition: transform 0.4s ease-out;
+    padding: max(env(safe-area-inset-top), 120px) max(env(safe-area-inset-right), 40px) max(env(safe-area-inset-bottom), 40px) max(env(safe-area-inset-left), 40px);
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
 }
 
 .mobile-menu.active {
@@ -290,15 +293,44 @@ body {
 }
 
 .mobile-nav-link {
-    font-size: var(--font-medium);
-    font-weight: 600;
+    font-size: var(--font-large);
+    font-weight: 700;
     color: var(--color-black);
     text-decoration: none;
-    transition: color 0.3s ease-out;
+    transition: all 0.3s ease-out;
+    padding: var(--space-sm) 0;
+    display: block;
+    width: 100%;
+    text-align: left;
+    letter-spacing: -0.5px;
+    line-height: 0.9;
+    text-transform: uppercase;
+    position: relative;
 }
 
 .mobile-nav-link:hover {
     color: var(--color-red);
+    transform: translateX(10px);
+}
+
+.mobile-nav-link:active {
+    color: var(--color-red);
+    transform: translateX(15px);
+}
+
+.mobile-nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--color-red);
+    transition: width 0.3s ease-out;
+}
+
+.mobile-nav-link:hover::after {
+    width: 100%;
 }
 
 /* ===== КНОПКИ ===== */
@@ -725,8 +757,16 @@ body {
     }
 
     .mobile-menu {
-        padding-top: env(safe-area-inset-top);
-        padding-bottom: env(safe-area-inset-bottom);
+        padding-top: max(env(safe-area-inset-top), 60px);
+        padding-bottom: max(env(safe-area-inset-bottom), 40px);
+        padding-left: max(env(safe-area-inset-left), 40px);
+        padding-right: max(env(safe-area-inset-right), 40px);
+    }
+
+    .mobile-nav-link {
+        font-size: var(--font-medium);
+        padding: var(--space-xs) 0;
+        letter-spacing: -1px;
     }
 
     .call-button {
@@ -773,6 +813,111 @@ body {
     .animate-on-scroll.visible {
         opacity: 1;
         transform: translateY(0);
+    }
+}
+
+/* ===== ДОДАТКОВІ СТИЛІ ДЛЯ МОБІЛЬНОГО МЕНЮ ===== */
+.mobile-menu {
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+.mobile-menu::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(245, 241, 237, 0.95);
+    z-index: -1;
+}
+
+/* Додаткові стилі для типографічного меню */
+.mobile-nav-link {
+    position: relative;
+    overflow: hidden;
+}
+
+.mobile-nav-link::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(220, 20, 60, 0.1), transparent);
+    transition: left 0.5s ease-out;
+}
+
+.mobile-nav-link:hover::before {
+    left: 100%;
+}
+
+/* Покращення для iOS Safari */
+@supports (-webkit-touch-callout: none) {
+    .mobile-menu {
+        height: -webkit-fill-available;
+    }
+
+    .mobile-nav-link {
+        -webkit-tap-highlight-color: transparent;
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        user-select: none;
+    }
+}
+
+/* Додаткові стилі для типографічного стилю */
+.mobile-menu {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.mobile-nav-link {
+    font-feature-settings: "liga" 1, "kern" 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Анімація появи посилань */
+.mobile-menu.active .mobile-nav-link {
+    animation: slideInFromLeft 0.5s ease-out forwards;
+    opacity: 0;
+    transform: translateX(-30px);
+}
+
+.mobile-menu.active .mobile-nav-link:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+.mobile-menu.active .mobile-nav-link:nth-child(2) {
+    animation-delay: 0.15s;
+}
+
+.mobile-menu.active .mobile-nav-link:nth-child(3) {
+    animation-delay: 0.2s;
+}
+
+.mobile-menu.active .mobile-nav-link:nth-child(4) {
+    animation-delay: 0.25s;
+}
+
+.mobile-menu.active .mobile-nav-link:nth-child(5) {
+    animation-delay: 0.3s;
+}
+
+.mobile-menu.active .mobile-nav-link:nth-child(6) {
+    animation-delay: 0.35s;
+}
+
+.mobile-menu.active .mobile-nav-link:nth-child(7) {
+    animation-delay: 0.4s;
+}
+
+@keyframes slideInFromLeft {
+    to {
+        opacity: 1;
+        transform: translateX(0);
     }
 }
 

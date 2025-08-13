@@ -2,7 +2,6 @@ services:
   - type: web
     name: prometeylabs-web
     runtime: python
-    pythonVersion: "3.13.5"
     plan: starter
     region: oregon
     preDeployCommand: |
@@ -15,6 +14,8 @@ services:
     envVars:
       - key: DJANGO_SETTINGS_MODULE
         value: "prometey_project.settings"
+      - key: PYTHON_VERSION
+        value: "3.13.5"
       - key: SECRET_KEY
         generateValue: true
       - key: DEBUG

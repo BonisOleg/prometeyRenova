@@ -13,11 +13,21 @@
 {% block content %}
 <!-- Hero Section -->
 <section class="hero-section full-height bg-beige">
+    <!-- Фонові відео для декстопу та мобільних -->
+    <video class="video-background desktop-video" autoplay muted loop playsinline>
+        <source src="{% static 'videos/desktop/main.mp4' %}" type="video/mp4">
+    </video>
+    <video class="video-background mobile-video" autoplay muted loop playsinline>
+        <source src="{% static 'videos/mobile/mainmobile.mp4' %}" type="video/mp4">
+    </video>
+
+    <!-- Overlay для кращої читабельності -->
+    <div class="video-overlay"></div>
     <div class="hero-content">
         <div class="container">
             <div class="hero-text text-center">
                 <h1 class="text-mega color-red mb-lg">Актуальні події та акції</h1>
-                <p class="text-large color-black mb-xl">
+                <p class="text-large color-white mb-xl">
                     <span class="hero-services">вебінари</span> ·
                     <span class="hero-services">курси програмування</span> ·
                     <span class="hero-services">знижки</span> ·

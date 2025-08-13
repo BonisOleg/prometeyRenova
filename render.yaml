@@ -38,5 +38,4 @@ databases:
   - name: prometeylabs-db-prod
     plan: starter
     region: oregon
-    postgresVersion: "16"
 

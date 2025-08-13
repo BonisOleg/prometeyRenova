@@ -288,7 +288,7 @@
 }
 
 /* ===== АДАПТАЦІЯ ПЛАНШЕТИ ===== */
-@media (max-width: 1024px) {
+@media (max-width: 1024px) and (min-width: 768px) {
     .developer-hero {
         min-height: 80vh;
     }
@@ -342,8 +342,8 @@
 /* ===== АДАПТАЦІЯ МОБІЛЬНІ (iOS Safari) ===== */
 @media (max-width: 767px) {
     .developer-hero {
-        min-height: 60vh;
-        min-height: calc(var(--vh, 1vh) * 60);
+        min-height: 100vh;
+        min-height: calc(var(--vh, 1vh) * 100);
     }
 
     .hero-content {

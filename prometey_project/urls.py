@@ -24,6 +24,7 @@ urlpatterns = [
     path('', include('apps.core.urls')),
     path('blog/', include('apps.blog.urls')),
     path('events/', include('apps.events.urls')),
+    path('payment/', include('apps.payment.urls')),
 ]
 
 # Статичні файли для розробки

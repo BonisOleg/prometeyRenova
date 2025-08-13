@@ -1,97 +1,174 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}{{ page_title }}{% endblock %}
-{% block description %}{{ meta_description }}{% endblock %}
+{% block title %}Контакти | PrometeyLabs{% endblock %}
+
+{% block description %}
+Зв'яжіться з командою PrometeyLabs. Ми завжди на зв'язку для обговорення вашого проекту, консультації чи навчання. Київ,
+Україна.
+{% endblock %}
+
+{% block og_title %}Контакти | PrometeyLabs{% endblock %}
+
+{% block og_description %}
+Зв'яжіться з командою PrometeyLabs для розробки сайтів, Telegram ботів, реклами чи навчання. Швидка відповідь.
+{% endblock %}
 
 {% block page_css %}
 <link rel="stylesheet" href="{% static 'css/contacts.css' %}">
 {% endblock %}
 
 {% block content %}
-<!-- Contacts Header -->
-<section class="contacts-header bg-beige">
-    <div class="container">
-        <h1 class="text-large color-red mb-md text-center">Зв'яжіться з нами</h1>
-        <p class="text-base text-center">
-            Готові обговорити ваш проект та підібрати найкраще рішення
-        </p>
-    </div>
-</section>
+<div class="contacts-page">
+    <!-- Заголовок сторінки -->
+    <section class="contacts-header">
+        <div class="container">
+            <h1 class="mega-title">КОНТАКТИ</h1>
+            <p class="subtitle">Залишайтеся на зв'язку з нами</p>
+        </div>
+    </section>
 
-<!-- Contacts Content -->
-<section class="contacts-content bg-white">
-    <div class="container">
-        <div class="grid-60-40">
-            <div class="contact-info">
-                <h2 class="text-medium color-red mb-md">Наші контакти</h2>
+    <!-- Основна інформація -->
+    <section class="contacts-main">
+        <div class="container">
+            <div class="contacts-grid">
+                <!-- Інформація про контакти -->
+                <div class="contacts-info">
+                    <div class="contact-block">
+                        <h2 class="medium-title">Зв'язок з нами</h2>
+                        <p class="contact-text">Потрібна консультація? Маєте питання про наші послуги? Зв'яжіться з нами
+                            будь-яким зручним способом:</p>
 
-                <div class="contact-item mb-md">
-                    <h3 class="text-sub mb-xs">Телефон</h3>
-                    <a href="tel:+380xxxxxxxxx" class="contact-link text-base">
-                        +380 XX XXX XX XX
-                    </a>
-                </div>
+                        <div class="contact-item">
+                            <h3>Телефон</h3>
+                            <a href="tel:+380XXXXXXXXX" class="contact-link">+380 XX XXX XX XX</a>
+                        </div>
 
-                <div class="contact-item mb-md">
-                    <h3 class="text-sub mb-xs">Email</h3>
-                    <a href="mailto:info@prometeylabs.com" class="contact-link text-base">
-                        info@prometeylabs.com
-                    </a>
-                </div>
+                        <div class="contact-item">
+                            <h3>Email</h3>
+                            <a href="mailto:info@prometeylabs.com" class="contact-link">info@prometeylabs.com</a>
+                        </div>
 
-                <div class="contact-item mb-md">
-                    <h3 class="text-sub mb-xs">Соціальні мережі</h3>
-                    <div class="social-links">
-                        <a href="https://t.me/prometeylabs" class="social-link btn btn-secondary" target="_blank">
-                            Telegram
-                        </a>
-                        <a href="https://instagram.com/prometeylabs" class="social-link btn btn-secondary"
-                            target="_blank">
-                            Instagram
-                        </a>
+                        <div class="contact-item">
+                            <h3>Месенджери</h3>
+                            <div class="messengers">
+                                <a href="https://t.me/prometeylabs" class="messenger-link" target="_blank"
+                                    rel="noopener">
+                                    Telegram
+                                </a>
+                                <a href="https://wa.me/380XXXXXXXXX" class="messenger-link" target="_blank"
+                                    rel="noopener">
+                                    WhatsApp
+                                </a>
+                                <a href="viber://chat?number=%2B380XXXXXXXXX" class="messenger-link" target="_blank"
+                                    rel="noopener">
+                                    Viber
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <h3>Графік роботи</h3>
+                            <p>Пн-Пт: 9:00 - 18:00<br>Сб-Нд: За домовленістю</p>
+                        </div>
+
+                        <div class="contact-item">
+                            <h3>Соціальні мережі</h3>
+                            <div class="social-links">
+                                <a href="https://instagram.com/prometeylabs" class="social-link" target="_blank"
+                                    rel="noopener">
+                                    Instagram
+                                </a>
+                                <a href="https://facebook.com/prometeylabs" class="social-link" target="_blank"
+                                    rel="noopener">
+                                    Facebook
+                                </a>
+                                <a href="https://linkedin.com/company/prometeylabs" class="social-link" target="_blank"
+                                    rel="noopener">
+                                    LinkedIn
+                                </a>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <div class="contact-item">
-                    <h3 class="text-sub mb-xs">Адреса</h3>
-                    <p class="text-base">м. Київ, Україна</p>
-                    <p class="text-small">Працюємо віддалено по всьому світу</p>
+                <!-- Форма зворотного зв'язку -->
+                <div class="contact-form-container">
+                    <div class="contact-form-wrapper">
+                        <h2 class="medium-title">Напишіть нам</h2>
+                        <p class="form-intro">Заповніть форму, і ми зв'яжемося з вами протягом 15 хвилин</p>
+
+                        <form id="contactForm" class="contact-form" data-form-type="contact">
+                            <div class="form-group">
+                                <label for="name" class="form-label">Ваше ім'я <span class="required">*</span></label>
+                                <input type="text" id="name" name="name" class="form-input" required placeholder="Ім'я">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="phone" class="form-label">Телефон <span class="required">*</span></label>
+                                <input type="tel" id="phone" name="phone" class="form-input" required
+                                    placeholder="+380">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="email" class="form-label">Email</label>
+                                <input type="email" id="email" name="email" class="form-input"
+                                    placeholder="email@example.com">
+                            </div>
+
+                            <div class="form-group full-width">
+                                <label for="message" class="form-label">Повідомлення</label>
+                                <textarea id="message" name="message" class="form-textarea" rows="5"
+                                    placeholder="Опишіть ваш проект або задайте питання"></textarea>
+                            </div>
+
+                            <div class="form-group full-width">
+                                <button type="submit" class="submit-btn">Надіслати повідомлення</button>
+                            </div>
+
+                            <div class="form-response" id="formResponse"></div>
+                        </form>
+                    </div>
                 </div>
-            </div>
-
-            <div class="contact-form">
-                <h2 class="text-medium color-red mb-md">Написати нам</h2>
-
-                <form data-form-type="contact" method="post">
-                    {% csrf_token %}
-                    <div class="form-group">
-                        <label for="contact-name" class="form-label">Ваше ім'я *</label>
-                        <input type="text" id="contact-name" name="name" class="form-input" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="contact-phone" class="form-label">Номер телефону *</label>
-                        <input type="tel" id="contact-phone" name="phone" class="form-input" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="contact-email" class="form-label">Email</label>
-                        <input type="email" id="contact-email" name="email" class="form-input">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="contact-message" class="form-label">Повідомлення *</label>
-                        <textarea id="contact-message" name="message" class="form-input form-textarea" required
-                            placeholder="Розкажіть про ваш проект..."></textarea>
-                    </div>
-
-                    <button type="submit" class="btn btn-primary">Відправити повідомлення</button>
-                </form>
             </div>
         </div>
+    </section>
+
+    <!-- Декоративний елемент -->
+    <div class="decorative-element">
+        <span class="red-star">★</span>
     </div>
-</section>
+
+    <!-- Адреса та карта -->
+    <section class="location-section">
+        <div class="container">
+            <h2 class="medium-title">Де ми знаходимось</h2>
+            <div class="location-grid">
+                <div class="address-block">
+                    <h3>Адреса офісу</h3>
+                    <p>Київ, Україна<br>вул. Хрещатик, 1<br>Офіс 101</p>
+
+                    <h3 class="mt-40">Як нас знайти</h3>
+                    <ul class="direction-list">
+                        <li>Метро "Хрещатик" - 5 хвилин пішки</li>
+                        <li>Автобуси 14, 18, 38 - зупинка "Центральна"</li>
+                        <li>Парковка перед будівлею</li>
+                    </ul>
+                </div>
+
+                <div class="map-container">
+                    <!-- Заглушка для карти -->
+                    <div class="map-placeholder">
+                        <div class="map-text">
+                            <p>Карта з місцерозташуванням</p>
+                            <p class="small-text">Буде завантажена після підтвердження</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
 {% endblock %}
 
 {% block extra_js %}

@@ -12,6 +12,23 @@ class BlogPost(models.Model):
     seo_description = models.CharField(max_length=160, verbose_name="SEO опис")
     keywords = models.CharField(max_length=255, verbose_name="Ключові слова")
     
+    # Нові поля для SEO
+    meta_title = models.CharField(max_length=60, verbose_name="Meta Title", blank=True)
+    meta_description = models.CharField(max_length=160, verbose_name="Meta Description", blank=True)
+    og_title = models.CharField(max_length=60, verbose_name="OG Title", blank=True)
+    og_description = models.CharField(max_length=160, verbose_name="OG Description", blank=True)
+    
+    # Додаткові поля
+    reading_time = models.PositiveIntegerField(default=5, verbose_name="Час читання (хв)")
+    featured_image = models.ImageField(upload_to='blog/', verbose_name="Головне зображення", blank=True)
+    category = models.CharField(max_length=50, choices=[
+        ('web-development', 'Веб-розробка'),
+        ('courses', 'Курси програмування'),
+        ('telegram-bots', 'Telegram боти'),
+        ('business', 'Бізнес'),
+        ('technology', 'Технології'),
+    ], default='web-development', verbose_name="Категорія")
+    
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="Створено")
     updated_at = models.DateTimeField(auto_now=True, verbose_name="Оновлено")
     is_published = models.BooleanField(default=True, verbose_name="Опубліковано")
@@ -27,13 +44,33 @@ class BlogPost(models.Model):
     def save(self, *args, **kwargs):
         if not self.slug:
             self.slug = slugify(self.title)
+        
+        # Автоматично заповнюємо meta поля якщо вони порожні
+        if not self.meta_title:
+            self.meta_title = self.title[:60]
+        if not self.meta_description:
+            self.meta_description = self.excerpt[:160]
+        if not self.og_title:
+            self.og_title = self.title[:60]
+        if not self.og_description:
+            self.og_description = self.excerpt[:160]
+            
         super().save(*args, **kwargs)
     
     def get_absolute_url(self):
-        return reverse('blog_detail', kwargs={'slug': self.slug})
+        return reverse('blog:blog_detail', kwargs={'slug': self.slug})
     
     def get_keywords_list(self):
         """Повертає список ключових слів"""
         if self.keywords:
             return [keyword.strip() for keyword in self.keywords.split(',')]
         return []
+    
+    def get_reading_time_text(self):
+        """Повертає текст часу читання"""
+        if self.reading_time == 1:
+            return "1 хвилина"
+        elif self.reading_time < 5:
+            return f"{self.reading_time} хвилини"
+        else:
+            return f"{self.reading_time} хвилин"

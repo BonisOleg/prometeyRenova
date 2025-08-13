@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Оплата послуг{% endblock %}
+
+{% block page_css %}
+<link rel="stylesheet" href="{% static 'payment/css/payment.css' %}">
+{% endblock %}
+
+{% block content %}
+<section class="payment-hero full-height">
+    <div class="container">
+        <h1 class="text-mega color-red mb-lg">Оплата</h1>
+        {% if payment_settings %}
+        <p class="text-large">{{ payment_settings.title }}</p>
+        <p>{{ payment_settings.description }}</p>
+        {% endif %}
+
+        {% if payment_link %}
+        <div class="payment-box">
+            <p class="text-large">Клієнт: <strong>{{ payment_link.client_name }}</strong></p>
+            <p>Сума: <strong>{{ payment_link.amount_usd }} USD</strong> (~ {{ payment_link.final_amount_uah }} UAH)</p>
+
+            <form method="post" action="{% url 'payment:create_invoice' unique_id=payment_link.unique_id %}">
+                {% csrf_token %}
+                <button class="btn btn-primary">Оплатити карткою</button>
+            </form>
+        </div>
+        {% elif test_mode %}
+        <form method="post">
+            {% csrf_token %}
+            <button class="btn btn-primary">Створити тестовий інвойс</button>
+        </form>
+        {% else %}
+        <p>Немає даних для платежу</p>
+        {% endif %}
+
+        <div class="bank-transfer mt-lg">
+            <h2 class="text-large color-red mb-sm">Банківський переказ</h2>
+            <p>IBAN: UA00 0000 0000 0000 0000 0000 0000</p>
+            <p>Отримувач: ТОВ "Ваша Компанія"</p>
+            <p>ІПН: 0000000000</p>
+        </div>
+    </div>
+</section>
+{% endblock %}

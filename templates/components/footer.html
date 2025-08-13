@@ -17,37 +17,38 @@
             <!-- Технології -->
             <div class="footer-section">
                 <h3>Технології</h3>
-                <a href="{% url 'blog' %}" class="footer-link">HTML5 / CSS3 / JavaScript</a>
-                <a href="{% url 'blog' %}" class="footer-link">React / Vue.js / Angular</a>
-                <a href="{% url 'blog' %}" class="footer-link">Python / Django / FastAPI</a>
-                <a href="{% url 'blog' %}" class="footer-link">Node.js / Express</a>
-                <a href="{% url 'blog' %}" class="footer-link">WordPress / Tilda</a>
-                <a href="{% url 'blog' %}" class="footer-link">PostgreSQL / MySQL</a>
-                <a href="{% url 'blog' %}" class="footer-link">AWS / Digital Ocean</a>
+                <a href="{% url 'blog:blog_list' %}" class="footer-link">HTML5 / CSS3 / JavaScript</a>
+                <a href="{% url 'blog:blog_list' %}" class="footer-link">React / Vue.js / Angular</a>
+                <a href="{% url 'blog:blog_list' %}" class="footer-link">Python / Django / FastAPI</a>
+                <a href="{% url 'blog:blog_list' %}" class="footer-link">Node.js / Express</a>
+                <a href="{% url 'blog:blog_list' %}" class="footer-link">WordPress / Tilda</a>
+                <a href="{% url 'blog:blog_list' %}" class="footer-link">PostgreSQL / MySQL</a>
+                <a href="{% url 'blog:blog_list' %}" class="footer-link">AWS / Digital Ocean</a>
             </div>
 
-            <!-- Контакти -->
+            <!-- Телефон та Email -->
             <div class="footer-section">
-                <h3>Контакти</h3>
+                <h3>Зв'язок</h3>
                 <a href="tel:+380xxxxxxxxx" class="footer-link">+380 XX XXX XX XX</a>
                 <a href="mailto:info@prometeylabs.com" class="footer-link">info@prometeylabs.com</a>
                 <a href="https://t.me/prometeylabs" class="footer-link" target="_blank" rel="noopener">Telegram</a>
                 <a href="https://instagram.com/prometeylabs" class="footer-link" target="_blank"
                     rel="noopener">Instagram</a>
+                <a href="{% url 'contacts' %}" class="footer-link">Контакти</a>
                 <a href="#" class="footer-link">м. Київ, Україна</a>
             </div>
 
-                                   <!-- Корисне -->
-                       <div class="footer-section">
-                           <h3>Корисна інформація</h3>
-                           <a href="{% url 'blog' %}" class="footer-link">Блог про веб-розробку</a>
-                           <a href="{% url 'events' %}" class="footer-link">Події та вебінари</a>
-                           <a href="{% url 'calculator' %}" class="footer-link">Калькулятор вартості сайту</a>
-                           <a href="{% url 'developer' %}" class="footer-link">Курси програмування</a>
-                           <a href="#" class="footer-link">FAQ</a>
-                           <a href="#" class="footer-link">Політика конфіденційності</a>
-                           <a href="#" class="footer-link">Умови співпраці</a>
-                       </div>
+            <!-- Корисне -->
+            <div class="footer-section">
+                <h3>Корисна інформація</h3>
+                <a href="{% url 'blog:blog_list' %}" class="footer-link">Блог про веб-розробку</a>
+                <a href="{% url 'events' %}" class="footer-link">Події та вебінари</a>
+                <a href="{% url 'calculator' %}" class="footer-link">Калькулятор вартості сайту</a>
+                <a href="{% url 'developer' %}" class="footer-link">Курси програмування</a>
+                <a href="#" class="footer-link">FAQ</a>
+                <a href="#" class="footer-link">Політика конфіденційності</a>
+                <a href="#" class="footer-link">Умови співпраці</a>
+            </div>
         </div>
 
         <!-- Footer Bottom -->

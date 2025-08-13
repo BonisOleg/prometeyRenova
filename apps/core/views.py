@@ -63,30 +63,17 @@ class DeveloperView(TemplateView):
         })
         return context
 
-class BlogView(TemplateView):
-    template_name = 'pages/blog.html'
-    
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context.update({
-            'page_title': 'Блог про веб-розробку | Статті та поради - PrometeyLabs',
-            'meta_description': 'Блог PrometeyLabs - статті про веб-розробку, програмування, створення сайтів, Telegram ботів, налаштування реклами. Корисні поради та лайфхаки.',
-            'current_year': 2024,
-        })
-        return context
-
 class ContactsView(TemplateView):
     template_name = 'pages/contacts.html'
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context.update({
-            'page_title': 'Контакти PrometeyLabs | Зв\'язок з нами',
-            'meta_description': 'Контакти PrometeyLabs - телефон, email, Telegram, адреса. Зв\'яжіться з нами для обговорення проекту розробки сайту або навчання.',
+            'page_title': 'Контакти | PrometeyLabs - Зв\'яжіться з нами',
+            'meta_description': 'Зв\'яжіться з командою PrometeyLabs для розробки сайтів, Telegram ботів, реклами чи навчання. Київ, Україна.',
             'current_year': 2024,
         })
         return context
-
 
 
 # ===== AJAX ОБРОБКА ФОРМ =====
@@ -151,8 +138,7 @@ def get_form_type_from_path(request):
         return 'site-request'
     elif 'developer' in referer:
         return 'developer'
-    elif 'contacts' in referer:
-        return 'contact'
+
     return 'consultation'  # default
 
 def validate_phone(phone):
@@ -247,25 +233,20 @@ def handle_consultation_request(request, name, phone):
     })
 
 def handle_contact_request(request, name, phone):
-    """Обробка контактної форми"""
-    email = request.POST.get('email', '')
+    """Обробка заявки зі сторінки контактів"""
     message = request.POST.get('message', '')
-    
-    # Валідація повідомлення
-    if not message.strip():
-        return JsonResponse({
-            'success': False,
-            'message': 'Будь ласка, введіть повідомлення'
-        }, status=400)
+    email = request.POST.get('email', '')
     
     # Створюємо дані для email
     form_data = {
-        'type': 'Повідомлення з контактної форми',
+        'type': 'Заявка зі сторінки контактів',
         'name': name,
         'phone': phone,
-        'email': email,
         'message': message,
-        'timestamp': timezone.now().strftime('%d.%m.%Y %H:%M')
+        'email': email,
+        'timestamp': timezone.now().strftime('%d.%m.%Y %H:%M'),
+        'ip': request.META.get('REMOTE_ADDR', ''),
+        'user_agent': request.META.get('HTTP_USER_AGENT', '')
     }
     
     # Відправляємо email
@@ -276,9 +257,11 @@ def handle_contact_request(request, name, phone):
     
     return JsonResponse({
         'success': True,
-        'message': 'Дякуємо! Ваше повідомлення отримано. Ми зв\'яжемося з вами найближчим часом.',
+        'message': 'Дякуємо за ваше повідомлення! Ми зв\'яжемося з вами найближчим часом.',
         'redirect': None
     })
+
+
 
 def handle_test_submission(request):
     """Обробка тесту для калькулятора"""

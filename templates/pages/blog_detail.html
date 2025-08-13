@@ -1,0 +1,110 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ page_title }}{% endblock %}
+{% block description %}{{ meta_description }}{% endblock %}
+{% block og_title %}{{ og_title }}{% endblock %}
+{% block keywords %}{{ keywords }}{% endblock %}
+
+{% block page_css %}
+<link rel="stylesheet" href="{% static 'css/blog.css' %}">
+{% endblock %}
+
+{% block content %}
+<!-- Article Header -->
+<article class="blog-article">
+    <header class="article-header bg-beige">
+        <div class="container">
+            <div class="article-meta">
+                <div class="article-category">
+                    <span class="category-tag">{{ post.get_category_display }}</span>
+                </div>
+                <time class="article-date text-small">{{ post.created_at|date:"d.m.Y" }}</time>
+                <div class="reading-time">
+                    <span class="reading-icon">⏱</span>
+                    <span class="reading-text">{{ post.get_reading_time_text }}</span>
+                </div>
+            </div>
+
+            <h1 class="article-title text-large color-red mb-md">{{ post.title }}</h1>
+
+            {% if post.excerpt %}
+            <div class="article-excerpt">
+                <p class="text-medium color-black">{{ post.excerpt }}</p>
+            </div>
+            {% endif %}
+
+            {% if post.featured_image %}
+            <div class="article-featured-image">
+                <img src="{{ post.featured_image.url }}" alt="{{ post.title }}" loading="lazy">
+            </div>
+            {% endif %}
+        </div>
+    </header>
+
+    <!-- Article Content -->
+    <div class="article-content bg-white">
+        <div class="container">
+            <div class="content-wrapper">
+                <div class="article-text">
+                    {{ post.content|safe }}
+                </div>
+
+                <!-- Article Keywords -->
+                {% if post.keywords %}
+                <div class="article-keywords-section">
+                    <h3 class="text-medium color-red mb-sm">Ключові слова</h3>
+                    <div class="article-keywords">
+                        {% for keyword in post.get_keywords_list %}
+                        <span class="keyword-tag">{{ keyword }}</span>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <!-- Related Articles -->
+    {% if related_posts %}
+    <section class="related-articles bg-beige">
+        <div class="container">
+            <h2 class="text-large color-red mb-md">Схожі статті</h2>
+            <div class="related-grid">
+                {% for related_post in related_posts %}
+                <article class="related-card">
+                    <div class="related-card-content">
+                        <h3 class="text-medium mb-xs">
+                            <a href="{{ related_post.get_absolute_url }}" class="article-link">
+                                {{ related_post.title }}
+                            </a>
+                        </h3>
+                        <p class="text-base mb-sm">{{ related_post.excerpt }}</p>
+                        <div class="related-card-meta">
+                            <time class="text-small">{{ related_post.created_at|date:"d.m.Y" }}</time>
+                            <span class="reading-time-small">{{ related_post.get_reading_time_text }}</span>
+                        </div>
+                    </div>
+                </article>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+    {% endif %}
+
+    <!-- Back to Blog -->
+    <section class="back-to-blog bg-white">
+        <div class="container">
+            <div class="back-link-wrapper text-center">
+                <a href="{% url 'blog:blog_list' %}" class="back-link text-medium color-red">
+                    ← Повернутися до блогу
+                </a>
+            </div>
+        </div>
+    </section>
+</article>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/blog.js' %}"></script>
+{% endblock %}

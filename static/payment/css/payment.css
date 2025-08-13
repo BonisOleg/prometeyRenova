@@ -1,0 +1,32 @@
+.payment-hero {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-beige, #F5F1ED);
+}
+
+.payment-box {
+    background: #fff;
+    border: 2px solid var(--color-red, #DC143C);
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 520px;
+    margin: 20px 0;
+}
+
+.payment-status {
+    padding: var(--space-xl, 60px) 0;
+}
+
+@media (max-width: 1024px) and (min-width: 768px) {
+    .payment-hero {
+        min-height: 80vh;
+    }
+}
+
+@media (max-width: 767px) {
+    .payment-hero {
+        min-height: 100vh;
+        min-height: calc(var(--vh, 1vh) * 100);
+    }
+}

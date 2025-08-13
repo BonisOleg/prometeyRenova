@@ -4,20 +4,20 @@
         <!-- Логотип PrometeyLabs -->
         <div class="nav-logo-section">
             <a href="{% url 'home' %}" class="nav-logo" aria-label="PrometeyLabs - Головна сторінка">
-            PrometeyLabs
-        </a>
+                PrometeyLabs
+            </a>
         </div>
 
-                           <!-- Desktop Navigation -->
-                   <nav class="nav-menu" role="navigation" aria-label="Основне меню">
-                       <a href="{% url 'home' %}" class="nav-link">головна</a>
-                       <a href="{% url 'portfolio' %}" class="nav-link">портфоліо</a>
-                       <a href="{% url 'calculator' %}" class="nav-link">розрахувати пропозицію</a>
-                       <a href="{% url 'developer' %}" class="nav-link">стати розробником</a>
-                       <a href="{% url 'blog' %}" class="nav-link">блог</a>
-                       <a href="{% url 'events' %}" class="nav-link">події</a>
-                       <a href="{% url 'contacts' %}" class="nav-link">контакти</a>
-                   </nav>
+        <!-- Desktop Navigation -->
+        <nav class="nav-menu" role="navigation" aria-label="Основне меню">
+            <a href="{% url 'home' %}" class="nav-link">головна</a>
+            <a href="{% url 'portfolio' %}" class="nav-link">портфоліо</a>
+            <a href="{% url 'calculator' %}" class="nav-link">розрахувати пропозицію</a>
+            <a href="{% url 'developer' %}" class="nav-link">стати розробником</a>
+            <a href="{% url 'blog:blog_list' %}" class="nav-link">блог</a>
+            <a href="{% url 'events' %}" class="nav-link">події</a>
+            <a href="{% url 'contacts' %}" class="nav-link">контакти</a>
+        </nav>
 
         <!-- Mobile Burger Button -->
         <button class="burger-menu" aria-label="Відкрити мобільне меню" aria-expanded="false">

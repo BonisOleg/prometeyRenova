@@ -1,100 +1,394 @@
-/* CONTACTS.CSS - Стилі для контактів згідно STYLE.MDC */
+/* CONTACTS.CSS - Стилі для сторінки контактів
+   Відповідає вимогам STYLE.MDC з мінімалістичним дизайном та червоними акцентами */
 
-.contacts-section {
-    padding: var(--space-xl) 0;
-    background: var(--color-beige);
+/* === ЗАГАЛЬНІ СТИЛІ СТОРІНКИ === */
+.contacts-page {
+    background-color: #F5F1ED;
+    /* Теплий бежевий фон */
+    color: #000000;
+    /* Чорний для основного тексту */
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    /* Sans-serif згідно стандарту */
+    overflow-x: hidden;
     position: relative;
 }
 
-.contacts-section h1 {
-    margin-bottom: var(--space-xl);
-}
-
-.contacts-section h2 {
-    margin-bottom: var(--space-lg);
-}
-
-/* Декоративні елементи */
-.contacts-section::before {
-    content: '✉';
-    position: absolute;
-    top: var(--space-sm);
-    left: var(--space-sm);
-    color: var(--color-red);
-    font-size: 28px;
-    opacity: 0.6;
-}
-
-.contacts-section::after {
-    content: '⟶';
-    position: absolute;
-    bottom: var(--space-sm);
-    right: var(--space-sm);
-    color: var(--color-red);
-    font-size: 32px;
+/* === ЗАГОЛОВКИ === */
+.mega-title {
+    font-size: 140px;
     font-weight: 700;
-    opacity: 0.4;
+    letter-spacing: -3px;
+    line-height: 0.85;
+    margin: 100px 0;
+    color: #DC143C;
+    /* Домінуючий червоний */
 }
 
-.contact-info {
-    margin-bottom: var(--space-lg);
+.medium-title {
+    font-size: 28px;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+/* === КОНТЕЙНЕРИ ТА СІТКА === */
+.container {
+    width: 90%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 40px;
+}
+
+.contacts-header {
+    margin: 80px 0 60px;
+}
+
+.subtitle {
+    font-size: 18px;
+    max-width: 400px;
+}
+
+.contacts-main {
+    margin-bottom: 80px;
+}
+
+.contacts-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    /* Двоколонковий layout */
+    gap: 60px;
+}
+
+/* === КОНТАКТНА ІНФОРМАЦІЯ === */
+.contacts-info {
+    padding-right: 40px;
+}
+
+.contact-block {
+    max-width: 400px;
+}
+
+.contact-text {
+    font-size: 16px;
+    line-height: 1.5;
+    margin-bottom: 40px;
 }
 
 .contact-item {
-    display: flex;
-    align-items: center;
-    margin-bottom: var(--space-sm);
-    padding-left: var(--space-xs);
-    border-left: 2px solid var(--color-red);
+    margin-bottom: 30px;
 }
 
-.contact-item a {
-    color: var(--color-black);
+.contact-item h3 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.contact-link {
+    color: #000;
     text-decoration: none;
     transition: color 0.3s ease-out;
+    display: block;
+    margin-bottom: 5px;
 }
 
-.contact-item a:hover {
-    color: var(--color-red);
+.contact-link:hover {
+    color: #DC143C;
 }
 
-.contact-form {
-    background: var(--color-white);
-    padding: var(--space-md);
-    border: 2px solid var(--color-red);
+.messengers,
+.social-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.messenger-link,
+.social-link {
+    color: #000;
+    text-decoration: none;
+    transition: all 0.3s ease-out;
     position: relative;
 }
 
-.contact-form::before {
-    content: '△';
-    position: absolute;
-    top: -10px;
-    left: var(--space-sm);
-    color: var(--color-red);
-    font-size: 16px;
-    background: var(--color-white);
-    padding: 0 5px;
+.messenger-link:hover,
+.social-link:hover {
+    color: #DC143C;
 }
 
-/* ===== АДАПТАЦІЯ МОБІЛЬНІ ===== */
+.messenger-link::after,
+.social-link::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background-color: #DC143C;
+    transition: width 0.3s ease-out;
+}
+
+.messenger-link:hover::after,
+.social-link:hover::after {
+    width: 100%;
+}
+
+/* === ФОРМА КОНТАКТІВ === */
+.contact-form-container {
+    position: relative;
+}
+
+.contact-form-wrapper {
+    background: #FFFFFF;
+    padding: 40px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+.form-intro {
+    font-size: 16px;
+    margin-bottom: 30px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.full-width {
+    grid-column: 1 / -1;
+}
+
+.form-label {
+    display: block;
+    font-size: 14px;
+    margin-bottom: 8px;
+}
+
+.required {
+    color: #DC143C;
+}
+
+.form-input,
+.form-textarea {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    border: 1px solid #E0E0E0;
+    background: #F8F8F8;
+    transition: border-color 0.3s ease-out;
+    font-family: inherit;
+}
+
+.form-input:focus,
+.form-textarea:focus {
+    border-color: #DC143C;
+    outline: none;
+}
+
+.form-textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+.submit-btn {
+    background-color: #DC143C;
+    color: #FFFFFF;
+    border: none;
+    padding: 14px 30px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease-out;
+}
+
+.submit-btn:hover {
+    background-color: #b01030;
+}
+
+.form-response {
+    margin-top: 20px;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+/* === ДЕКОРАТИВНИЙ ЕЛЕМЕНТ === */
+.decorative-element {
+    position: absolute;
+    right: 5%;
+    top: 35%;
+}
+
+.red-star {
+    color: #DC143C;
+    font-size: 32px;
+    display: inline-block;
+    transform: rotate(15deg);
+}
+
+/* === СЕКЦІЯ ЛОКАЦІЇ === */
+.location-section {
+    margin: 100px 0;
+    padding: 80px 0;
+    background-color: #F8F8F8;
+    /* Альтернативний світло-сірий фон */
+}
+
+.location-grid {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    /* Асиметричні пропорції 1/3 до 2/3 */
+    gap: 40px;
+}
+
+.address-block {
+    padding-right: 20px;
+}
+
+.address-block h3 {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 12px;
+}
+
+.address-block p {
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.mt-40 {
+    margin-top: 40px;
+}
+
+.direction-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.direction-list li {
+    margin-bottom: 10px;
+    position: relative;
+    padding-left: 20px;
+}
+
+.direction-list li::before {
+    content: '•';
+    color: #DC143C;
+    position: absolute;
+    left: 0;
+}
+
+.map-container {
+    height: 400px;
+}
+
+.map-placeholder {
+    width: 100%;
+    height: 100%;
+    background-color: #E5E5E5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.map-text {
+    font-size: 16px;
+}
+
+.map-text .small-text {
+    font-size: 12px;
+    margin-top: 10px;
+    opacity: 0.7;
+}
+
+/* === АДАПТИВНІСТЬ ДЛЯ ПЛАНШЕТІВ (768px - 1024px) === */
+@media (max-width: 1024px) {
+    .mega-title {
+        font-size: 90px;
+        /* Зменшуємо мега-заголовок */
+        margin: 70px 0;
+    }
+
+    .container {
+        padding: 0 30px;
+    }
+
+    .contacts-grid,
+    .location-grid {
+        gap: 30px;
+    }
+
+    .contact-form-wrapper {
+        padding: 30px;
+    }
+}
+
+/* === АДАПТИВНІСТЬ ДЛЯ МОБІЛЬНИХ (320px - 767px) === */
 @media (max-width: 767px) {
-    .contacts-section {
-        padding: var(--space-md) 0;
+    .mega-title {
+        font-size: 50px;
+        /* Суттєво зменшуємо для мобільних */
+        margin: 50px 0;
+        letter-spacing: -1px;
     }
 
-    .contacts-section::before {
-        font-size: 20px;
-        top: var(--space-xs);
-        left: var(--space-xs);
+    .container {
+        width: 100%;
+        padding: 0 20px;
     }
 
-    .contacts-section::after {
+    .contacts-grid,
+    .location-grid {
+        grid-template-columns: 1fr;
+        /* Одноколонковий layout */
+        gap: 40px;
+    }
+
+    .contacts-info {
+        padding-right: 0;
+    }
+
+    .contact-block {
+        max-width: 100%;
+    }
+
+    .medium-title {
         font-size: 24px;
-        bottom: var(--space-xs);
-        right: var(--space-xs);
     }
 
-    .contact-form {
-        padding: var(--space-sm);
+    .contact-form-wrapper {
+        padding: 25px;
+    }
+
+    .map-container {
+        height: 300px;
+    }
+
+    .decorative-element {
+        right: 10%;
+        top: 15%;
+    }
+}
+
+/* === iOS Safari специфіка === */
+@supports (-webkit-touch-callout: none) {
+
+    /* Стилі для iOS Safari */
+    .contacts-page {
+        /* Застосовуємо -webkit-fill-available для коректного відображення висоти */
+        min-height: -webkit-fill-available;
+    }
+
+    .submit-btn {
+        /* Уникаємо проблем з нативними стилями кнопок на iOS */
+        -webkit-appearance: none;
+        border-radius: 0;
+    }
+
+    /* Враховуємо safe areas для iPhone з вирізами */
+    @supports (padding-bottom: env(safe-area-inset-bottom)) {
+        .contacts-page {
+            padding-bottom: env(safe-area-inset-bottom);
+            padding-left: env(safe-area-inset-left);
+            padding-right: env(safe-area-inset-right);
+        }
     }
 }

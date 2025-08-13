@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Посилання недоступне{% endblock %}
+
+{% block page_css %}
+<link rel="stylesheet" href="{% static 'payment/css/payment.css' %}">
+{% endblock %}
+
+{% block content %}
+<section class="payment-status">
+    <div class="container text-center">
+        <h1 class="text-mega color-red mb-lg">Посилання недоступне</h1>
+        {% if payment_link %}
+        <p class="text-large">Статус: {{ payment_link.get_status_display }}</p>
+        {% else %}
+        <p class="text-large">Це платіжне посилання недоступне.</p>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}

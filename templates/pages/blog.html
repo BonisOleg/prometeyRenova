@@ -37,6 +37,59 @@
     </div>
 </section>
 
+<!-- Blog Header з пошуком -->
+<section class="blog-header bg-beige">
+    <div class="container">
+        <div class="blog-intro">
+            <h2 class="text-large color-red mb-md">Корисні статті про веб-розробку</h2>
+            <p class="text-base mb-lg">
+                Читайте експертні поради, практичні керівництва та актуальну інформацію
+                про створення сайтів, навчання програмуванню та автоматизацію бізнесу
+            </p>
+        </div>
+
+        <!-- Пошук по блогу -->
+        <div class="blog-search">
+            <form method="get" action="{% url 'blog:blog_search' %}" class="search-form">
+                <div class="search-input-wrapper">
+                    <input type="text" name="q" placeholder="Знайти статтю..." class="search-input" required>
+                    <button type="submit" class="search-button">
+                        <span class="search-icon">🔍</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Фільтри по категоріях -->
+        <div class="blog-categories">
+            <div class="blog-stats mb-sm">
+                <span class="stats-text">📚 {{ page_obj.paginator.count }} статей • {{ page_obj.paginator.num_pages }}
+                    сторінок</span>
+            </div>
+            <div class="categories-list">
+                <a href="{% url 'blog:blog_list' %}" class="category-filter {% if not category %}active{% endif %}">
+                    Всі статті
+                </a>
+                <a href="?category=web-development"
+                    class="category-filter {% if category == 'web-development' %}active{% endif %}">
+                    Веб-розробка
+                </a>
+                <a href="?category=courses" class="category-filter {% if category == 'courses' %}active{% endif %}">
+                    Курси програмування
+                </a>
+                <a href="?category=telegram-bots"
+                    class="category-filter {% if category == 'telegram-bots' %}active{% endif %}">
+                    Telegram боти
+                </a>
+                <a href="?category=technology"
+                    class="category-filter {% if category == 'technology' %}active{% endif %}">
+                    Технології
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
 <!-- Blog Articles Grid -->
 <section class="blog-articles bg-white">
     <div class="container">
@@ -45,10 +98,17 @@
             <article class="blog-card" data-article="{{ forloop.counter }}">
                 <div class="card-header">
                     <span class="article-number text-page color-red">{{ forloop.counter|stringformat:"02d" }}</span>
-                    <time class="article-date text-small">{{ post.created_at|date:"d.m.Y" }}</time>
+                    <div class="card-meta">
+                        <time class="article-date text-small">{{ post.created_at|date:"d.m.Y" }}</time>
+                        <span class="reading-time-small">⏱ {{ post.get_reading_time_text }}</span>
+                    </div>
                 </div>
 
                 <div class="card-content">
+                    <div class="article-category mb-xs">
+                        <span class="category-tag">{{ post.get_category_display }}</span>
+                    </div>
+
                     <h2 class="text-medium mb-xs">
                         <a href="{{ post.get_absolute_url }}" class="article-link">{{ post.title }}</a>
                     </h2>
@@ -115,6 +175,35 @@
                     <p class="text-base">Автоматизація бізнесу з допомогою розумних ботів</p>
                 </div>
             </div>
+        </div>
+    </div>
+</section>
+
+<!-- Популярні статті -->
+<section class="popular-articles bg-beige">
+    <div class="container">
+        <div class="popular-header text-center">
+            <h2 class="text-large color-red mb-md">🔥 Популярні статті</h2>
+            <p class="text-base mb-lg">Найбільш читані та корисні матеріали</p>
+        </div>
+
+        <div class="popular-grid">
+            {% for post in popular_posts %}
+            <div class="popular-card {% if forloop.first %}featured{% endif %}">
+                <div class="popular-card-content">
+                    <h3 class="text-medium mb-xs">
+                        <a href="{{ post.get_absolute_url }}" class="article-link">
+                            {{ post.title }}
+                        </a>
+                    </h3>
+                    <p class="text-base mb-sm">{{ post.excerpt|truncatechars:120 }}</p>
+                    <div class="popular-card-meta">
+                        <span class="category-tag">{{ post.get_category_display }}</span>
+                        <span class="reading-time">⏱ {{ post.get_reading_time_text }}</span>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
         </div>
     </div>
 </section>

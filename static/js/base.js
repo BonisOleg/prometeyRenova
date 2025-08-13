@@ -153,7 +153,7 @@ class PrometeyApp {
         burgerBtn.classList.remove('active');
         mobileMenu.classList.remove('active');
         body.style.overflow = '';
-        
+
         // Скидання анімацій для iOS Safari
         const mobileLinks = document.querySelectorAll('.mobile-nav-link');
         mobileLinks.forEach(link => {

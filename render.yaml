@@ -1,0 +1,41 @@
+services:
+  - type: web
+    name: prometeylabs-web
+    env: python
+    plan: starter
+    region: oregon
+    preDeployCommand: |
+      python manage.py migrate --noinput
+    buildCommand: |
+      pip install -r requirements.txt
+      python manage.py collectstatic --noinput
+    startCommand: |
+      gunicorn prometey_project.wsgi:application --preload --log-file - --bind 0.0.0.0:$PORT
+    envVars:
+      - key: DJANGO_SETTINGS_MODULE
+        value: prometey_project.settings
+      - key: PYTHON_VERSION
+        value: 3.13.5
+      - key: SECRET_KEY
+        generateValue: true
+      - key: DEBUG
+        value: False
+      - key: ALLOWED_HOSTS
+        value: ""
+      - key: RENDER_EXTERNAL_URL
+        fromService: prometeylabs-web
+        name: url
+      - key: SECURE_SSL_REDIRECT
+        value: True
+      - key: DATABASE_URL
+        fromDatabase:
+          name: prometeylabs-db
+          property: connectionString
+    autoDeploy: true
+
+databases:
+  - name: prometeylabs-db
+    plan: starter
+    region: oregon
+    postgresVersion: "16"
+

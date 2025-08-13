@@ -1,6 +1,7 @@
 services:
   - type: web
-    name: prometeylabs-web
+    name: prometeylabs-web-prod
+    branch: main
     runtime: python
     plan: starter
     region: oregon
@@ -25,7 +26,7 @@ services:
         value: "True"
       - key: DATABASE_URL
         fromDatabase:
-          name: prometeylabs-db
+          name: prometeylabs-db-prod
           property: connectionString
       - key: SITE_URL
         sync: false
@@ -34,7 +35,7 @@ services:
     autoDeploy: true
 
 databases:
-  - name: prometeylabs-db
+  - name: prometeylabs-db-prod
     plan: starter
     region: oregon
     postgresVersion: "16"

@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 
 import os
 from pathlib import Path
+from urllib.parse import urlparse
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -26,7 +27,7 @@ SECRET_KEY = os.getenv('SECRET_KEY', 'dev-secret-key')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv('DEBUG', 'True') == 'True'
 
-ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '').split(',') if not DEBUG else ['*']
+ALLOWED_HOSTS = [h for h in os.getenv('ALLOWED_HOSTS', '').split(',') if h] if not DEBUG else ['*']
 
 
 # Application definition
@@ -156,10 +157,12 @@ else:
     WHITENOISE_USE_FINDERS = True
 
 # CSRF/SECURE налаштування для Render
-RENDER_EXTERNAL_URL = os.getenv('RENDER_EXTERNAL_URL', '')
+RENDER_EXTERNAL_URL = os.getenv('RENDER_EXTERNAL_URL', '').rstrip('/')
 if RENDER_EXTERNAL_URL:
-    CSRF_TRUSTED_ORIGINS = [RENDER_EXTERNAL_URL]
-    host = RENDER_EXTERNAL_URL.replace('https://', '').replace('http://', '')
+    parsed = urlparse(RENDER_EXTERNAL_URL)
+    origin = f"{parsed.scheme}://{parsed.netloc}" if parsed.scheme and parsed.netloc else RENDER_EXTERNAL_URL
+    CSRF_TRUSTED_ORIGINS = [origin]
+    host = parsed.netloc or origin.replace('https://', '').replace('http://', '')
     if host and host not in ALLOWED_HOSTS:
         ALLOWED_HOSTS.append(host)
 

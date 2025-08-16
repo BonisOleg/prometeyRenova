@@ -37,6 +37,6 @@ services:
 
 databases:
   - name: prometeylabs-db-prod
-    plan: basic
+    plan: pro
     region: oregon
 

@@ -26,17 +26,10 @@ services:
       - key: SECURE_SSL_REDIRECT
         value: "True"
       - key: DATABASE_URL
-        fromDatabase:
-          name: prometeylabs-db-prod
-          property: connectionString
+        value: ""  # Буде встановлено вручну через Dashboard
       - key: SITE_URL
         sync: false
       - key: MONOBANK_TOKEN
         sync: false
     autoDeploy: true
-
-databases:
-  - name: prometeylabs-db-prod
-    plan: pro
-    region: oregon
 

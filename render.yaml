@@ -21,7 +21,8 @@ services:
         generateValue: true
       - key: DEBUG
         value: "False"
-      # RENDER_EXTERNAL_URL є дефолтною змінною середовища від Render; не визначаємо вручну
+      - key: ALLOWED_HOSTS
+        value: ""
       - key: SECURE_SSL_REDIRECT
         value: "True"
       - key: DATABASE_URL
@@ -36,6 +37,6 @@ services:
 
 databases:
   - name: prometeylabs-db-prod
-    plan: standard
+    plan: starter
     region: oregon
 

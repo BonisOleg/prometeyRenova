@@ -7,6 +7,8 @@ services:
     region: oregon
     preDeployCommand: |
       python manage.py migrate --noinput
+      python manage.py migrate --run-syncdb
+      python manage.py collectstatic --noinput
     buildCommand: |
       pip install -r requirements.txt
       python manage.py collectstatic --noinput

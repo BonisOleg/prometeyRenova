@@ -89,19 +89,22 @@ WSGI_APPLICATION = 'prometey_project.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
-if not DEBUG:
-    # Продакшн налаштування для Render
+# База даних
+database_url = os.getenv('DATABASE_URL')
+
+if not DEBUG and database_url:
+    # Продакшн налаштування для Render з PostgreSQL
     import dj_database_url
     DATABASES = {
         'default': dj_database_url.parse(
-            os.getenv('DATABASE_URL', 'sqlite:///db.sqlite3'), 
+            database_url, 
             conn_max_age=600, 
             ssl_require=True,
             conn_health_checks=True
         )
     }
 else:
-    # Локальна розробка
+    # Локальна розробка або fallback
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
